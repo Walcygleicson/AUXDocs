@@ -8,10 +8,12 @@ const utils = {
     createElement(tag, attrs, content) {
         var element = document.createElement(tag);
         for (var key in attrs) {
-            if (!attrs[key]) continue;
-            element.setAttribute(key, attrs[key]);
-            element.innerHTML = content==undefined? '': content
+            if (attrs[key]) {
+                element.setAttribute(key, attrs[key]);
+            }
         }
+        element.innerHTML = content==undefined? '': content
+
         return element;
     },
 

@@ -180,18 +180,16 @@ function description(item, name) {
     descriptionFild.innerHTML = ''
     description.forEach((parag) => {
         //Buscar por marcação de negrito no texto e encapsular palavra em uma tag b
-        const boldMarks = parag.match(/\*\*(\w+|.+)\*\*/g)
-        if (boldMarks) {
-            boldMarks.forEach((mark) => {
-                parag = parag.replaceAll(mark, `<b>${mark.replaceAll('*', '')}</b>`)
+        // const boldMarks = parag.match(/\*\*(\w+|.+)\*\*/g)
+        // if (boldMarks) {
+        //     boldMarks.forEach((mark) => {
+        //         parag = parag.replaceAll(mark, `<b>${mark.replaceAll('*', '')}</b>`)
                 
-            })
-        }
+        //     })
+        // }
 
         //Inserir parágrafos
-        descriptionFild.innerHTML += '<p>' + parag + '</p>'
-
-        
+        descriptionFild.innerHTML += '<p>' + parseBoldMarks(parag) + '</p>'  
     })
     
     //Esconder ou monstrar campo de Nota:
@@ -210,30 +208,83 @@ function description(item, name) {
 //PARAMS DESCRIPTIONS
 //Esta função executa em description()
 function paramsDescription(params) {
+    const prmList = document.getElementById('prm-list')
+    prmList.innerHTML = ''
+
     //Se não houver parametros
     if (params == 0) {
-        
+        prmList.innerHTML = '<li><p> Não possui nenhum parâmetro!'
     } else { //Se houver parametros
 
         Object.keys(params).forEach((name) => {
-
+            const prm = params[name]
             //Criar lista de parametro
             const li = utils.createElement('li')
             //Título
             const title = utils.createElement('h4', { class: 'param-name' }, name + ':')
+            if (prm.required == false) {
+                title.classList.add('optional')
+            }
+
             //Inserir span de tipo
             title.innerHTML += (function () {
                 //Obter tipos
-                const prmTypes = params[name].type.map((e) => { return '<span>' + e + '</span>' })
-                return prmTypes.join(' | ')
+                const prmTypes = prm.type.map((e) => { return '<span>' + e + '</span>' })
+                return '<span class="arg-type">' + prmTypes.join(' | ') + '</span>'
             
             })()
 
             li.appendChild(title)
 
+            //Ul da descrição do parametro
+            let descUl = utils.createElement('ul', { class: 'param-description' }, (function () {
+                //Inserir conteúdo da descrição do parametro
+                var liContents = ''
+
+                prm.description.forEach((content) => {
+                    content = parseBoldMarks(content)
+                    liContents += '<li>' + content + '</li>'
+                })
+
+                return liContents
+                
+            })())
+
+
             
+            //Verificar se possui argumentos padrão e criar lista de descrição de cada um
+            const args = prm.args
+            if (args) {
+                const argList = Object.keys(args)
+                const ulArgs = utils.createElement('ul', {class: 'control-args'})
+        
+                argList.forEach((argName) => {
+                    
+                    //Criar li de args
+                    const liArg = utils.createElement('li', { class: 'arg-li' })
+                    //Adicionar nome do argumento
+                    liArg.appendChild(utils.createElement('h4', {}, `"${argName}":`))
+
+                    //Inserir paragrafos de descrição
+                    args[argName].forEach((des) => {
+                        des = parseBoldMarks(des)
+                        const p = utils.createElement('p', {}, des)
+                        liArg.appendChild(p)
+                    })
+
+
+
+                    ulArgs.appendChild(liArg)
+                })
+
+                descUl.appendChild(ulArgs)
+                
+            }
             
+            li.appendChild(descUl)
             
+            prmList.appendChild(li)
+
         })
 
     }
@@ -262,5 +313,20 @@ const paramsNumb = function (paramList) {
     result.optional = result.len - result.required
     return result
 }
+
+//Procura por marckdanws de texto negrito em textos **aaa** e envolve em uma tag b
+const parseBoldMarks = function (text) {
+    const boldMarks = text.match(/\*\*(\w+|.+)\*\*/g)
+    
+    if (boldMarks) {
+        boldMarks.forEach((mark) => {
+            text = text.replaceAll(mark, `<b>${mark.replaceAll('*', '')}</b>`)
+            
+        })
+    }
+
+    return text
+}
+
 
 

@@ -291,6 +291,7 @@ body * {
 }
 
 .params .arg-type {
+    margin-left: .5em;
     font-size: .7em;
     color: white;
 }
