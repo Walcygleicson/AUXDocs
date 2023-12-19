@@ -1,5 +1,5 @@
 const DH = {
-    arrMatch: {
+    getHTML: {
         returns: ['boolean', 'array', 'object'],
         params: {
             array_a: {
@@ -21,7 +21,7 @@ const DH = {
         }
     },
 
-    arrClean: {
+    toggleDisplay: {
         returns: ['array'],
         params: {
             array_a: {
@@ -43,7 +43,7 @@ const DH = {
         }
     },
 
-    'storage.setLocal': {
+    'windowSize': {
         returns: ['boolean', 'number'],
         params: {
             array_a: {

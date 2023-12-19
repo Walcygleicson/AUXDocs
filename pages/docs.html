@@ -37,34 +37,32 @@
             <div class="scroller-container">
                 <!-- Intro -->
                 <details id="intro" open>
-                    <summary>Introdução</summary>
-                    <ul>
+                    <summary class="sumary">Introdução</summary>
+                    <ul id="intro-linst">
                         <li class="list-items intro">
-                            <a href="#control-args">control_arg</a>
+                            <a href="#control_args">control_arg</a>
                         </li>
                     </ul>
                 </details>
 
                 <!--  OBJECT-->
                 <details open>
-                    <summary id="oh-sumary">Object Handlers</summary>
+                    <summary id="oh-sumary" class="sumary">Object Handlers</summary>
                     <ul id="oh-list">
-    
                     </ul>
                 </details>
+
                 <!-- DOM -->
                 <details open>
-                    <summary id="dh-sumary">DOM Handlers</summary>
+                    <summary id="dh-sumary" class="sumary">DOM Handlers</summary>
                     <ul id="dh-list" class="u-list">
-                      
                     </ul>
                 </details>
     
                 <!-- EVENT -->
-                <details id="event-handlers" open>
-                    <summary id="eh-sumary">Event Handlers</summary>
+                <details open>
+                    <summary id="eh-sumary" class="sumary">Event Handlers</summary>
                     <ul id="eh-list">
-                        
                     </ul>
                 </details>
             </div>
@@ -73,34 +71,49 @@
     <main id="main">
         <div class="content">
 
+            <!-- CABEÇALHO -->
             <div class="content-head">
                 <h1 class="name">
-                    <span>arrMatch</span><span class="parenteses">()</span>:
-                    <span class="returns">
-                        <span>boolean</span> |
-                        <span>array</span> |
-                        <span>object</span>
+                    <span id="fn-name"><!--Nome da função ou método--></span>
+                    <span class="parenteses">()</span>:
+                    <span class="returns" id="returns">
+                        <!-- Tipos de retorno da função ou método -->
                     </span>
                 </h1>
-                <div class="details-by">
-                    Função | 4 parâmetros | 2 obrigatórios | 2 control_args
+
+                <div class="details-by" id="details-by">
+                    <!-- Função | 0 parâmetros | 0 obrigatórios | 0 control_args -->
                 </div>
             </div>
 
+            <!-- DESCRIÇÃO -->
+
             <section class="description">
                 <h2>Descrição:</h2>
-                <div class="example">
-                    <span class="evoke">arrMatch</span>( <span>array_a</span>, <span>array_b</span>, <span>control_arg</span>, <span>control_args2</span> )
+
+                <!-- Faixa de exemplo de Sintaxe -->
+                <div class="example" title="Exemplo de Sintaxe">
+                    <span class="evoke" id="evoke-name"><!--Nome Fn ou Mthd--></span>
+                    ( <div class="params-capsule" id="params-capsule"><!--Nome dos Parametros--></div> )
                 </div>
-                <p>Verifica se os itens de um Array existem em outro Array. Se ao menos um item do primeiro Array existir no segundo Array a função retorna true. Deve ser notado que a verificação é sempre feita se somente itens de <b>array_a</b> existem em <b>array_b</b> e nunca o oposto. Deve-se notar também que a verificação considera um match apenas a primeira ocorrência do item correspondente em <b>array_b</b>. Ou seja, se <b>array_a</b> possui um valor x e <b>arry_b</b> possui dois valores x, a primeira ocorrência é quem dará retorno.</p>
 
-                <p class="note">Nota: O modo como esta função trabalha e retorna um resultado pode ser configurado com o uso dos <a href="#control-args" class="link-to">argumentos de controle</a>.</p>
+                <!-- Descrição -->
+                <div id="description-field">
+                    <p>Verifica se os itens de um Array existem em outro Array. Se ao menos um item do primeiro Array existir no segundo Array a função retorna true. Deve ser notado que a verificação é sempre feita se somente itens de <b>array_a</b> existem em <b>array_b</b> e nunca o oposto. Deve-se notar também que a verificação considera um match apenas a primeira ocorrência do item correspondente em <b>array_b</b>. Ou seja, se <b>array_a</b> possui um valor x e <b>arry_b</b> possui dois valores x, a primeira ocorrência é quem dará retorno.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium optio aliquam necessitatibus sed assumenda ipsam, veniam, nulla aperiam iste aspernatur cupiditate iusto ipsum reiciendis quo beatae magnam saepe perspiciatis soluta!</p>
+                </div>
 
+                <!-- Nota de uso de argumento de controle -->
+                <p class="note" id="note-warn">Nota: O modo como esta função trabalha e retorna um resultado pode ser configurado com o uso dos <a href="#control_arg" class="link-to">argumentos de controle</a>.</p>
+
+                <!-- Descrição dos parâmetros -->
                 <div class="params">
                     <h3>Parâmetros:</h3>
-                    <ul class="params-list">
+
+                    <ul class="params-list" id="prm-list">
                         <li>
                             <h4 class="param-name">array_a: <span class="arg-type"><span>array</span></span></h4>
+
                             <ul class="param-description">
                                 <li>Recebe um Array para ser analisado. Será verificado se ao menos um valor corresponde a algum valor existente em <b>array_b</b>.</li>
                             </ul>

@@ -1,5 +1,5 @@
 const EH = {
-    arrMatch: {
+    mouseInOut: {
         returns: ['boolean', 'array', 'object'],
         params: {
             array_a: {
@@ -21,7 +21,7 @@ const EH = {
         }
     },
 
-    arrClean: {
+    clickOnOff: {
         returns: ['array'],
         params: {
             array_a: {
@@ -43,7 +43,7 @@ const EH = {
         }
     },
 
-    'storage.setLocal': {
+    'changeClassName': {
         returns: ['boolean', 'number'],
         params: {
             array_a: {
