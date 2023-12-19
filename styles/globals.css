@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: aux;
+    src: url(../fonts/Nunito-VariableFont_wght.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: parenteses;
+    src: url(../fonts/rimouski.ttf) format('truetype');
+}
+
+
+
+:root {
+    --font-aux: aux;
+    --font-parenteses: parenteses;
+    --color-gray-dark: rgb(40, 28, 50);
+    --color-purple-title: rgb(189, 46, 221);
+    --color-purple-dark:rgb(118, 26, 138);
+    --color-purple-hover:rgb(204, 138, 204);
+    --color-pink-dead: rgb(227, 116, 171);
+    --color-code-dark: rgb(43, 34, 50);
+    --color-gray-border: rgba(88, 81, 93, 0.507);
+    --font-size-nav: 1em;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+main{
+   margin: 9.5em auto auto auto;
+}
+
+.--sep {
+
+    text-align: center;
+    margin-top: 2em;
+    color: rgba(128, 128, 128, 0.258);
+    letter-spacing: 5px;
+}

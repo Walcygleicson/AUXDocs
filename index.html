@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="home">HOME - AUX.js - Pacote de Utilidades JavaScript</title>
+    <link rel="shortcut icon" href="imgs/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/Header.css">
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+<body>
+    <header>
+        <div class="aux">
+            <img src="imgs/flask.png" alt="Logo AUX" class="aux-logo">
+            <h1 class="aux-title">
+                <span>AUX.</span>
+                <span class="js">JS</span>
+            </h1>
+        </div>
+
+        <nav>
+            <ul class="items-list">
+                <li id="home-item" class="current-page"><a href="index.html" title="O que é AUX e como usar em seus projetos?">Home</a></li>
+                <li id="doc-item"><a href="pages/docs.html" title="Entre para ler a documentação completa de AUX.">Documentos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <img src="imgs/flask.png" alt="Logo AUX" class="flask-card">
+
+        <section class="section-links">
+            <h2>Redes Pessoais do Autor:</h2>
+            <div class="socials">
+                <a href="https://github.com/Walcygleicson" target="_blank" title="Me siga no Github"><img src="imgs/github.png" alt="Icone de Github"></a>
+                <a href="https://www.instagram.com/walcy_gleicson" target="_blank" title="Me siga no Instagram"><img src="imgs/instagram.png" alt="Icone de Instagram"></a>
+                <a href="mailto:walcygleicsonoliveira@gmail.com" target="_blank" title="Me envie um Email"><img src="imgs/gamil.png" alt="Icone de Email"></a>
+            </div>
+        </section>
+
+        <section class="what-aux">
+            <h2 class="section-title">O que é o AUX.<span class="js">js</span> ?</h2>
+            <p>AUX.js pode ser chamado de <b>Pacote de Auxílio Front-End JavaScript</b>, daí que vem o nome <b>AUX</b> (auxílio). AUX foi criado e pensado para facilitar a vida do desenvolvedor front-end com tarefas que são comnus mas que ao mesmo tempo são repetitivos e demorados e tornam o processo de desenvolver cansativo. Por fim, este pacote dispõe de um conjunto de módulos de utilidades JavaScript para o uso em tarefas do lado do cliente.</p>
+            <h3>Como e por que AUX surgiu?</h3>
+            <p>AUX surgiu a partir de uma necessidade particular minha, mas que também é a necessidade de muitos outros desenvolvedores Web; <b>programar menos e fazer mais</b>. Em todo projeto que eu iniciava eu sempre me via perdendo tempo criando funcionalidades que serviriam para complementar uma funcionalidade maior e mais complexa, e em todos esses projetos eu me via codando sempre os mesmo códigos. Eram funcionalidades básicas, mas era o que garantia a precisão do trabalho do código. Então decidi reunir todas as necessidades e desafios que eu encontrava durante meu trabalho e transformá-las em módulos para que assim eu as usasse sempre que sentisse necessidade. Sempre que surgia uma necessidade como, por exemplo, uma função que analisa se os valores de um array estão presentes em outro array, ou uma função que alterna o CSS de um elemento sempre que é chamada, imediatamente eu abria o projeto AUX e começava a confecionar esta funcionalidade com tudo eu ela necessitaria para funcionar perfeitamente em todos os cenários possíveis em que ela seria últil. Comecei a reunir várias funções e métodos essenciais para meu trabalho e passei a usá-las em absolutamnete tudo que eu fazia. Foi pra mim por muito tempo uma grande mão amiga. Agora eu podia fazer uma análize complexa e completa de um determinado dado ou a manipulação de um determinado objeto com uma única chamada de função e alguns parâmetros.</p>
+            <br>
+            <p>A cada módulo que surgia eu analizava todos os cenários em que ele poderia ser útil e em vários desses cenários esse mesmo módulo deveria trabalhar me modo um pouco diferente e as vezes até me retornar tipos diferentes dependendo da minha necessidade. Então comecei a implementar multilas funcionalidade a uma função. Quase todos os módulos presentes em AUX de funcionalidades extras além da padrão que podem ser determinadas com alguns argumentos que eu chamo de <b>argumentos de controle</b>. Estes argumentos quando passados alteram o modo como a função ou método trabalha fazendo com que a mesma possa retornar resultados diferentes dependendo de cada necessidade. Todas essas especificações estão listadas em DOCUMENTOS de forma detalhada e em JSDocs de forma mais resumida.</p>
+            <br>
+            <a class="link-button" href="pages/docs.html">Introdução Argumentos de Controle</a>
+
+            <h3>Inspirações:</h3>
+            <p>Podemos dizer que AUX é uma junção de duas das principais bibliotecas JavaScript: <b>JQuery</b> e <b>Lodash</b>. Talvez mais inpirada em Lodash do que em JQuery.</p>
+            <p>São duas bibliotecas que sempre usei, mas em determinados momentos me via perguntando porque nenhuma delas tinha uma determinada função ou método que me ajudaria a agilizar determinada tarefa. Na falta destas que AUX começou a surgir.</p>
+        </section>
+
+        <hr>
+        
+        <section class="description">
+            <h2 class="section-title">Reduza Trabalhos em Uma Única Linha:</h2>
+            <p>Foque apenas no que interessa! AUX.js fornece <b>funções</b> e <b>métodos</b> prontos para uso geral em seus projetos. Eles são divididos internamente em 3 principais tipos:</p>
+            <ul class="sumary">
+                <li>Object Handlers</li>
+                <li>Dom Handlers</li>
+                <li>Event Handlers</li>
+            </ul>
+
+            <h3>Object Handlers</h3>
+
+            <p>Tem a principal funcionalidade a manipulação de objetos do tipo <b>Strings</b>, <b>Numbers</b>, <b>Arrays</b> e <b>Objects</b>.</p>
+            <p>Conta com funções que auxiliam na manipulação, formatação e análise desses objetos de forma mais rápida e com uma única linha.</p>
+
+            <h3>Dom Handlers</h3>
+
+            <p>A principal funcionalidade destas funções e métodos é a manipulação de elementos do DOM sem muitas complicações.</p>
+            <p>Funções dedicadas a manipular elementos HTML como também suas classes, ids, conteúdos,atributos e propriedades, estilos CSS e afins.</p>
+            <h3>Event Handlers</h3>
+            <p>Estes são dedicados a manipulação de Eventos DOM de forma mais simplificada e prática do que o JavaScript puro oferece, tornando a tarefa de manipular e organizar vários eventos de vários elementos mais atraente</p>
+
+        </section>
+
+        <hr>
+
+        <section>
+            <h2 class="section-title">Como Usar o AUX.<span class="js">js</span> ?</h2>
+            <p>É fácil, rápido e o melhor é leve!</p>
+            <p>AUX não possui dependências externas. Tudo o que ele precisa para trabalhar já vem embutido em seu código fonte o que o torna pártico e leve para uso.</p>
+
+            <ul class="htu-list">
+                <li class="htu-title">Vamos Lá:</li>
+                <li>Para começar basta entrar no reposiório e fazer o dawnload do pacote.</li>
+                <li><a class="link-button" href="https://github.com/Walcygleicson/Gerador_de_Codigo_Python" target="_blank">Ir para Repositório</a></li>
+                <li>Feito o dawnload agora é só extrair os arquivos do pacote .zip.</li>
+                <li>A pasta que queremos se chama <b>aux_js</b>. Copie ela para a raiz do seu projeto.</li>
+                <li>Já está tudo praticamente feito! Agora é só importar os módulos de <b>aux_js/auxm.js</b> para o seu projeto e começar a trabalhar.</li>
+            </ul>
+
+            <p>Todos os módulos são devidamente documentados usando JSDoc. Se você estiver usando VSCode bastar pausar o cursor sobre uma função ou métofo que uma janela contendo algumas especificações de uso irá surgir.</p>
+            <p>Caso possua dúvidas de como usar cada função ou método visite a página de DOCUMENTOS que fornece uma documentação mais detalhada e exemplos de como usá-las.</p>
+            <br>
+            <a class="link-button" href="pages/docs.html">Ler Documentação</a>
+
+            <h3>Versão:</h3>
+            <ul class="version-list">
+                <li class="current-version">AUX.js atualmente está em <b> Versão 1.1.0</b></li>
+                <li>Verifique a versão do seu módulo: Importe qualquer módulo no seu projeto, isso lhe dará acesso a variável global <b>AUXVERSION</b>, depois imprima no console:</li>
+                <li >
+                    <picture>
+                        <source media="(orientation: portrait)" srcset="imgs/print-code-user-auxversion-midle.png">
+                        
+                        <img class="code-screenshot" src="imgs/print-code-user-auxversion.png" alt="">
+                    </picture>
+                    <!-- <pre>
+                        <code>
+                            <span class="rule">import</span> { <span class="var-name">arrMatch</span> } <span class="rule">from</span> " <span class="str">./aux_js/auxm.js</span> "
+
+                            <span class="var-name">console</span>.<span class="call">log</span>(<span class="const-name">AUXVERSION</span>)<span class="comment"> // saída: v - 1.1.0</span>
+                        </code>
+                    </pre> -->
+                </li>
+
+                <li>AUX.js é lançado sob a <b><i>licença MIT</i></b>.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <div class="--sep">----- + -----</div>
+
+    <footer>
+        <p class="developed-by">Desenvolvido por <span>Walcygleicson M. Oliveira</span> - 2023</p>
+        <div class="details">
+            <p>v - 1.1.0</p> |
+            <p>AUX.js é uma biblioteca de utilidades JavaScript de código aberto</p> |
+            <p>Brasil &copy; 2023</p>
+
+
+        </div>
+    </footer>
+</body>
+</html>

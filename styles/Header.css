@@ -1,0 +1,95 @@
+@import url(globals.css);
+
+header {
+    z-index: 100;
+    font-family: var(--font-aux);
+    background: var(--color-gray-dark);
+    box-shadow: 0px 2px 3px rgba(14, 1, 30, 0.433);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 10px 1em;
+    display: flex;
+    gap: 5%;
+
+}
+
+header * {
+    color: white;
+}
+
+.aux {
+    width: fit-content;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: .5em; 
+}
+
+.aux > .aux-logo {
+    width: 40px;
+    height: 40px;
+    padding: 7px;
+    border: 1px solid rgba(173, 173, 173, 0.538);
+    border-radius: 7px;
+    box-shadow: 2px 2px 2px rgba(12, 2, 27, 0.805);
+}
+
+.aux > .aux-title{
+    display: flex;
+    font-weight: normal;
+    align-items: center;
+}
+
+.aux > .aux-title > span:first-child{
+    color: white;
+}
+
+.aux > .aux-title > span:last-child{
+    color: var(--color-purple-title);
+    font-style: italic;
+    font-size: .9em;
+}
+
+/* NAV */
+
+nav {
+    width: 60%;
+}
+
+nav > ul {
+    border: 1px solid rgba(194, 194, 194, 0.27);
+    border-radius: 12px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.459);
+    text-transform: uppercase;
+    height: 100%;
+    width: 45%;
+    margin-left: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: var(--font-size-nav);
+}
+
+nav > ul > li:hover > a {
+    transition-duration: .2s;
+    color: var(--color-purple-title);
+}
+
+nav > ul > .current-page{
+    position: relative;
+}
+
+nav > ul > .current-page > a {
+    color: var(--color-purple-hover);
+}
+
+nav > ul > .current-page::before{
+    position: absolute;
+    content: ' ';
+    background-color: rgba(217, 216, 216, 0.311);
+    padding: .1px;
+    width: 100%;
+    bottom: 0;
+}

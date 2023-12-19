@@ -1,0 +1,35 @@
+@import url(globals.css);
+
+footer {
+    margin-top: 3em;
+    background: var(--color-gray-dark);
+    box-shadow: 0 -2px 3px rgba(128, 128, 128, 0.614);
+    height: 200px;
+    padding: 1em 0;
+    display: grid;
+    place-items: center;
+}
+
+footer * {
+    font-family: var(--font-aux);
+    color: white;
+}
+
+footer > .developed-by {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.232);
+    padding-bottom: .5em;
+
+}
+
+footer > .developed-by > span {
+    color: var(--color-purple-title);
+}
+
+footer > .details {
+    border: 1px solid rgba(187, 187, 187, 0.158);
+    display: flex;
+    gap: 1em;
+    padding: 5px 1em;
+    
+    color: var(--color-purple-title);
+}
