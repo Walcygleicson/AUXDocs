@@ -17,6 +17,55 @@ window.addEventListener('load', () => {
     changeDocItem()
 })
 
+//Evento de click nos items da categoria Introdução (que não são criados dinamicamente)
+const introItems = [...document.querySelectorAll('.intro-items')]
+introItems.forEach((item) => {
+    //EVENTO DE CLICK
+    item.addEventListener('click', () => {
+        //Habilitar container do conteúdo aside
+        document.querySelector('.aside-content').style.display = 'block'
+
+        //Antes de tudo limpar classe current-item de todos os items de todas as categorias
+        const listItems = [...document.querySelectorAll('.list-items')]
+        listItems.forEach((e) => {
+            e.classList.remove('current-item')
+        })
+
+        //Também remover classe current-sumary de todos os summary
+        const allSumary = [...document.querySelectorAll('.sumary')]
+        allSumary.forEach((sum) => {
+            sum.classList.remove('current-sumary')
+
+            //Aproveitar para adicionar a classe current-sumary na categoria Introdução
+            if (sum.id == 'intro-sumary'){
+                sum.classList.add('current-sumary')
+            }
+        })
+
+        //Adicionar classe current-item ao item clicado
+        item.classList.add('current-item')
+
+        //Mostrar/Esconder conteúdo do item selecionado e esconder conteúdo da documentação
+        const liHash = item.children[0].href.split('#')[1] // Pegar hash do item
+        const introSections = [...document.querySelectorAll('.intro-sections')]
+        introSections.forEach((section) => {
+            if (section.id == liHash) {
+                section.style.display = 'block'
+            } else {
+                section.style.display = 'none'
+            }
+        })
+
+        //Esconder Conteudo da documentação
+        document.querySelector('.content').style.display = 'none'
+        
+
+        
+    })
+})
+
+
+
 //Preencher SideNav
 const listId = ['oh-list', 'dh-list', 'eh-list']
 listId.forEach((id) => {
@@ -36,14 +85,14 @@ listId.forEach((id) => {
 
         list.appendChild(li) //Adiciona o elemento criado na ul
 
-        //Evento de click
+        //Evento de click nos li crados dinamicamente
         li.addEventListener('click', () => { changeDocItem(li, id) })
 
     })
 })
 
 
-//Ataulizar conteúdo do Main
+//Ataulizar conteúdo da documentação
 function changeDocItem(li, id) {
 
     //Marcar item atual selecionado na barra de navegação lateral
@@ -53,6 +102,7 @@ function changeDocItem(li, id) {
         name: null,
         group: null
     }
+    var isIntroItem = false
     
 
     items.forEach((el, i) => {
@@ -78,11 +128,24 @@ function changeDocItem(li, id) {
                 sumary = document.getElementById('dh-sumary')
             } else if (el.classList.contains('eh')) {
                 sumary = document.getElementById('eh-sumary')
+            } else {
+                sumary =  document.getElementById('intro-sumary')
             }
 
             if (hash == elemHash) {
                 el.classList.add('current-item')
                 sumary.classList.add('current-sumary')
+
+                //Mostar conteúdo aside se o hash for de algum item da categoria introdução e esconder conteúdo da documentação
+                if (el.classList.contains('intro-items')) {
+                    isIntroItem = true
+                    //Habilitar container dos conteudos aside
+                    document.querySelector('.aside-content').style.display = 'block'
+                    //Habilitar conteúdo relacionado ao hash ativo
+                    document.getElementById(hash).style.display = 'block'
+                    //Desabilitar conteudo da documentação
+                    document.querySelector('.content').style.display = 'none'
+                }
 
                 docInf.name = elemHash
                 docInf.group = el.parentNode.id
@@ -98,35 +161,45 @@ function changeDocItem(li, id) {
         //Estilizar current-item
         sumary = document.getElementById(id.replace('list', 'sumary'))
 
+
         //Adicionar classe current-item ao li clicado
         li.classList.add('current-item')
         //Add classe current-sumary ao sumário do item clicado
         sumary.classList.add('current-sumary')
+        //Mostra conteúdo da documentação
+        document.querySelector('.content').style.display = 'block'
+        //Esconder container do conteúdo da introdução
+        document.querySelector('.aside-content').style.display = 'none'
 
         docInf.name = li.children[0].href.split('#')[1]
         docInf.group = id
     }
 
-    buildContent(docInf)
+    //Montar conteúdo da documentaçao
+    if (!isIntroItem) { //Constroi consteúdo da doc somente se o item clicado n for da categoria introdução
+        buildContent(docInf)
+    }
   
 }
 
+
+//MONTA O CONTEÚDO MAIN
 function buildContent(docInf) {
+    /**Armazena a propriedade de documentos referente ao item atual selecionado */
     const itemDoc = docs[docInf.group][docInf.name]
+
     //Montar cabeçalho do conteúdo
     header(itemDoc, docInf.name)
     //Montar sessão de descrição
     description(itemDoc, docInf.name)
     //Montar sessões de detalhes
-
-    const codeBlock = document.getElementById('code-block')
-    codeBlock.innerHTML = itemDoc.details[0].code
+    detailsSections(itemDoc.details)
+    
     
 }
 
 //CONTENT HEADER
 function header(item, name) {
-    console.log(item)
     var fnType //Armazena se é função ou método
 
     name.includes('.') ?
@@ -294,6 +367,56 @@ function paramsDescription(params) {
     }
 }
 
+//DETAILS AND EXAMPLES
+function detailsSections(detailsList) {
+
+    //Para cada detalhe
+    detailsList.forEach((details) => {
+        const detailsCapsule = document.getElementById('details-capsule')
+
+        //Criar section
+        const section = utils.createElement('section', { class: 'details-section' })
+        const title = utils.createElement('h3')
+
+        //Verificar se existe titulo
+        if (details.title) {
+            title.innerHTML = details.title + ':'
+            
+        } else {
+            //Se não existir inserir titulo padrão
+            title.innerHTML = 'Uso padrão:'
+        }
+        section.appendChild(title)
+
+        //Verificar se existe textos superiores ao bloco de código
+        if (details.upText) {
+            // Criar parágrafos superiores
+            details.upText.forEach((pText) => {
+                const p = utils.createElement('p', {}, parseBoldMarks(pText))
+                section.appendChild(p)
+            })
+        }
+
+        //Criar bloco de código
+        const pre = utils.createElement('pre', { class: 'example-code' })
+        pre.appendChild(utils.createElement('code', {}, details.code))
+        section.appendChild(pre)
+
+        //Verificar se existe texto inferiores ao bloco de código
+        if (details.dawnText) {
+            // Criar parágrafos inferiores
+            details.dawnText.forEach((pText) => {
+                const p = utils.createElement('p', {}, parseBoldMarks(pText))
+                section.appendChild(p)
+            })
+        }
+            
+
+        //Inserir section de detalhes na section pai
+        detailsCapsule.appendChild(section)
+    })
+}
+
 
 
 //AUX FUNCS
@@ -333,4 +456,64 @@ const parseBoldMarks = function (text) {
 }
 
 
+//ANIMAÇÕES
+//Contrair as categorias da barra lateral quando o footer surgir na tela
+const footer = document.getElementById('footer')
+var entered = false
+var exited = true
+
+window.addEventListener('scroll', () => {
+    const pos = footer.getBoundingClientRect().top
+    const screenH = window.innerHeight
+    
+    //Enquanto o footer n entrar checkar
+    if (!entered && exited) {
+        if (pos < screenH) {
+            entered = true
+            exited = false
+        }
+        if (entered) {
+            closeDetails(true)
+        }
+    }
+    
+    //Se o footer entrou enquanto não sair chrckar
+    if (entered && !exited) {
+        if (pos > screenH) {
+            entered = false
+            exited = true
+        }
+        
+        if (exited) {
+            closeDetails(false)
+        }
+    }
+    
+    
+})
+
+
+const closeDetails = (close) => {
+    const sideDetails = [...document.querySelectorAll('.scroller-container > details')]
+
+    sideDetails.forEach((aba) => {
+        if (close) {
+            aba.open = false
+        } else {
+            aba.open = true
+        }
+    })
+    
+}
+
+//Função criada por IA
+//Função que verifica se um elemento entrou e saiu da janela ao rolar a página com js puro
+// function isScrolledIntoView(el) {
+//     let rect = el.getBoundingClientRect()
+//     return rect.bottom >= 0 &&
+//         rect.right >= 0 &&
+//         rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
+//         rect.top <= (window.innerHeight || document.documentElement.clientHeight)
+// }
+    
 

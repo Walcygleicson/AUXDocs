@@ -30,17 +30,25 @@
         </nav>
     </header>
 
+    <!-- BARRA DE NAVEGAÇÃO LATERAL -->
     <aside id="aside">
         <div class="side-nav">
+            <!-- Cabeçalho da sidenav -->
             <h2 class="aside-title">AUX<span>Docs</span></h2>
             <p>Versão: 1.1.0 - 17/12/2023</p>
 
+            <!-- Lista por categoria -->
             <div class="scroller-container">
                 <!-- Intro -->
                 <details id="intro" open>
-                    <summary class="sumary">Introdução</summary>
+                    <summary class="sumary" id="intro-sumary">Introdução</summary>
+
                     <ul id="intro-linst">
-                        <li class="list-items intro">
+                        <li class="list-items intro-items">
+                            <a href="#about-aux">Sobre AUX.JS</a>
+                        </li>
+
+                        <li class="list-items intro-items">
                             <a href="#control_args">control_arg</a>
                         </li>
                     </ul>
@@ -69,7 +77,16 @@
             </div>
         </div>
     </aside>
+
+    <!-- MAIN -->
     <main id="main">
+        <!-- CONTEUDO RELACIONADO A INTRODUÇÃO -->
+        <div class="aside-content">
+            <section class="about-aux intro-sections" id="about-aux">Sobre Aux</section>
+            <section class="control_args intro-sections" id="control_args">Sobre Control_Args</section>
+
+        </div>
+        <!-- CONTEÚDO RELACIONADO A DOCUMENTAÇÃO DOS MÓDULOS -->
         <div class="content">
 
             <!-- CABEÇALHO -->
@@ -112,41 +129,7 @@
                     <h3>Parâmetros:</h3>
 
                     <ul class="params-list" id="prm-list">
-                        <li>
-                            <h4 class="param-name">array_a: <span class="arg-type"><span>array</span></span></h4>
-
-                            <ul class="param-description">
-                                <li>Recebe um Array para ser analisado. Será verificado se ao menos um valor corresponde a algum valor existente em <b>array_b</b>.</li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <h4 class="param-name">array_b: <span class="arg-type"><span>array</span></span></h4>
-                            <ul class="param-description">
-                                <li>Recebe um Array para se comparado com um valor de <b>array_a</b>.</li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <h4 class="param-name optional">control_arg: <span class="arg-type"><span>string</span> | <span>number</span></span></h4>
-
-                            <ul class="param-description">
-                                <li>Pode receber argumentos de controle do tipo <b>string</b> e/ou um <b>número inteiro</b>. São eles:</li>
-
-                                <ul class="control-args">
-                                    <li class="arg-li">
-                                        <h4>"all":</h4>
-                                        <p>A função só retorna true se todos os itens de <b>array_a</b> existirem em <b>array_b</b>, caso contrário o retorno é false.</p>
-                                    </li>
-
-                                    <li class="arg-li">
-                                        <h4>"list":</h4>
-                                        <p>Retorna um Array contendo um objeto para cada item de <b>array_a</b> que corresponder. Cada objeto contém o item correspondente, o index do item correspondente em <b>array_a</b>, o index do item correspondente em <b>array_b</b> e o tipo do item.</p>
-                                    </li>
-                                </ul>
-
-                            </ul>
-                        </li>
+                        <!-- Descrições de cada parametro -->
                     </ul>
                 </div>
             </section>
@@ -154,42 +137,14 @@
 
             <!-- OUTROS DETALHES -->
 
-            <section class="more-details">
+            <section class="more-details" id="details-capsule">
                 <h2>Mais detalhes:</h2>
-
-                
-                <section class="detail-section">
-                    <h3>Uso básico:</h3>
-                    <p>Vamos verificar se algum item de um array corresponde a um item de outro array.</p>
-                    <pre class="example-code">
-                    <code id="code-block">
-                        //Exemplo A
-                        const arrA = ['foo', 33, 0, 'bar', true]
-                        const arrB =  ['hello', 44, 2, 'foo', false]
-                        const output = arrMatch(arrA, arrB)
-                    </code>
-                    </pre>
-
-                </section>
-
-                <h3>Usando o argumento de controle "all":</h3>
-                <p>Deve ser notado que a verificação é sempre feita se os itens de <b>array_a</b> também existem em <b>array_b</b>. Ou seja, nuca é feita a verificação se o itens de <b>array_b</b> existem em <b>array_a</b>. Se em <b>array_b</b> existem dois itens com o mesmo valor apenas a primeira ocorrência é</p>
-                <p>Veja o exemplo abaixo:</p>
-                <pre class="example-code">
-                    <code>
-                        //Exemplo A
-                        const arrA = ['foo', 33, 0, 'bar', true]
-                        const arrB =  ['hello', 44, 2, 'foo', false]
-                        const output = arrMatch(arrA, arrB)
-                    </code>
-                </pre>
-                <p></p>
+                <!-- Mais detalhes e exemplos de uso -->
             </section>
             
         </div>
     </main>
 
-    
 
     <div class="--sep" id="sep">----- + -----</div>
 

@@ -1,0 +1,12 @@
+@import url(globals.css);
+
+.control_args{
+    border: 1px solid rgba(128, 128, 128, 0.182);
+    border-radius: 15px;
+    margin: 0 2em;
+    padding: 3em;
+    margin-bottom: 4em;
+
+    /* teste */
+    display: none;
+}

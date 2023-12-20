@@ -2,6 +2,10 @@
 @import url(Header.css);
 @import url(Footer.css);
 
+/* teste */
+@import url(aboutAux.css);
+@import url(aboutControlArgs.css);
+
 
 body {
     display: grid;
@@ -184,6 +188,7 @@ body * {
     border-radius: 15px;
     margin: 0 2em;
     padding: 3em;
+    margin-bottom: 4em;
 }
 
 .content-head {
@@ -354,4 +359,15 @@ body * {
     text-align: center;
     opacity: 10%;
     letter-spacing: 5px;
+}
+
+.details-section{
+    border-bottom: 1px dashed rgba(119, 119, 119, 0.164);
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+}
+
+.details-section > p {
+    text-indent: 1em;
+    margin-top: .5em;
 }
