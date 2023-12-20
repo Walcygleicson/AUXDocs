@@ -7,6 +7,7 @@
     <title id="home">HOME - AUX.js - Pacote de Utilidades JavaScript</title>
     <link rel="shortcut icon" href="../imgs/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../styles/docs.css">
+    <link rel="stylesheet" href="../styles/codeStyle.css">
 </head>
 
 <body>
@@ -128,7 +129,7 @@
 
                         <li>
                             <h4 class="param-name optional">control_arg: <span class="arg-type"><span>string</span> | <span>number</span></span></h4>
-                            
+
                             <ul class="param-description">
                                 <li>Pode receber argumentos de controle do tipo <b>string</b> e/ou um <b>número inteiro</b>. São eles:</li>
 
@@ -150,19 +151,26 @@
                 </div>
             </section>
             <div class="break-section">----- + -----</div>
+
+            <!-- OUTROS DETALHES -->
+
             <section class="more-details">
                 <h2>Mais detalhes:</h2>
 
-                <h3>Uso básico:</h3>
-                <p>Vamos verificar se algum item de um array corresponde a um item de outro array.</p>
-                <pre class="example-code">
-                    <code>
+                
+                <section class="detail-section">
+                    <h3>Uso básico:</h3>
+                    <p>Vamos verificar se algum item de um array corresponde a um item de outro array.</p>
+                    <pre class="example-code">
+                    <code id="code-block">
                         //Exemplo A
                         const arrA = ['foo', 33, 0, 'bar', true]
                         const arrB =  ['hello', 44, 2, 'foo', false]
                         const output = arrMatch(arrA, arrB)
                     </code>
-                </pre>
+                    </pre>
+
+                </section>
 
                 <h3>Usando o argumento de controle "all":</h3>
                 <p>Deve ser notado que a verificação é sempre feita se os itens de <b>array_a</b> também existem em <b>array_b</b>. Ou seja, nuca é feita a verificação se o itens de <b>array_b</b> existem em <b>array_a</b>. Se em <b>array_b</b> existem dois itens com o mesmo valor apenas a primeira ocorrência é</p>

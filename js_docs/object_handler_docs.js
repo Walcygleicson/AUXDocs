@@ -1,3 +1,5 @@
+import { JS } from "../modules/code-themes.js"
+
 const OH = {
     arrMatch: {
         returns: ['boolean', 'array', 'object'],
@@ -48,6 +50,8 @@ const OH = {
         description: ['nada a **declarar**.']
     },
 
+// ------------------
+
     'storage.setLocal': {
         returns: ['boolean', 'number'],
         params: {
@@ -73,8 +77,31 @@ const OH = {
             }
         },
 
-        description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium optio aliquam necessitatibus sed assumenda ipsam, veniam, nulla aperiam iste aspernatur cupiditate iusto ipsum reiciendis quo beatae magnam saepe perspiciatis soluta!','Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium optio aliquam necessitatibus sed assumenda ipsam, veniam, nulla aperiam iste aspernatur cupiditate iusto ipsum reiciendis quo beatae magnam saepe perspiciatis soluta!', 'Lorem ipsum dolor sit **amet consectetur adipisicing** elit. Accusantium optio aliquam necessitatibus sed assumenda ipsam, veniam, nulla aperiam iste aspernatur cupiditate iusto ipsum reiciendis quo beatae magnam saepe perspiciatis soluta!']
+        description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium optio aliquam necessitatibus sed assumenda ipsam, veniam, nulla aperiam iste aspernatur cupiditate iusto ipsum reiciendis quo beatae magnam saepe perspiciatis soluta!', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium optio aliquam necessitatibus sed assumenda ipsam, veniam, nulla aperiam iste aspernatur cupiditate iusto ipsum reiciendis quo beatae magnam saepe perspiciatis soluta!', 'Lorem ipsum dolor sit **amet consectetur adipisicing** elit. Accusantium optio aliquam necessitatibus sed assumenda ipsam, veniam, nulla aperiam iste aspernatur cupiditate iusto ipsum reiciendis quo beatae magnam saepe perspiciatis soluta!'],
+        
+        details:[ {
+            title: 'Uso básico',
+            upText: ['Vamos verificar se algum item de um array corresponde a um item de outro array.'],
+
+            code: `
+            ${JS.var('arrA', ['foo', 2, true, 'hello'])}
+            ${JS.var('arrB', ['test', 'hello', 33, 'true', 100])}
+            ${JS.var('arrC', ['bar', 100, 0.2, 'oof'])}
+
+            ${JS.coment('exemplo A')}
+            ${JS.call('arrMatch', [JS.var('.arrA'), JS.var('.arrB')]) + JS.coment(true)}
+
+            ${JS.coment('exemplo B')}
+            ${JS.call('arrMatch', [JS.var('.arrC'), JS.var('.arrB')]) + JS.coment(false)}`,
+            
+
+            dawnText: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium optio aliquam necessitatibus sed assumenda ipsam, veniam, nulla aperiam iste aspernatur cupiditate iusto ipsum reiciendis quo beatae magnam saepe perspiciatis soluta!', 'L Etcetet hshshs shshsh shshadusds dugcsgii i ii ig']
+            
+        }]
     },
+
+// ------------
+
     'cookies.set': {
         returns: ['array'],
         params: 0,
@@ -83,6 +110,9 @@ const OH = {
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium optio aliquam necessitatibus sed assumenda ipsam, veniam, nulla aperiam iste aspernatur cupiditate iusto ipsum reiciendis quo beatae magnam saepe perspiciatis soluta!']
     
     },
+
+//-----------------
+
 
     'cookies.define': {
         returns: ['array', 'string', 'boolean'],

@@ -117,6 +117,10 @@ function buildContent(docInf) {
     header(itemDoc, docInf.name)
     //Montar sessão de descrição
     description(itemDoc, docInf.name)
+    //Montar sessões de detalhes
+
+    const codeBlock = document.getElementById('code-block')
+    codeBlock.innerHTML = itemDoc.details[0].code
     
 }
 

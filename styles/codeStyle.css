@@ -1,0 +1,58 @@
+@font-face {
+    font-family: codeItalic;
+    src: url(../fonts/code-ubuntu-italic.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: codeNormal;
+    src: url(../fonts/code-ubuntu-regular.ttf) format('truetype');
+}
+
+
+
+.example-code {
+    background: rgb(63, 53, 71);
+    color: rgb(255, 224, 222);
+    padding: .5em 0;
+    border-radius: 10px;
+    margin: .5em 0;
+}
+
+.example-code *  {
+    font-family: codeNormal;
+}
+
+
+
+code .keyword {
+    color: rgb(66, 135, 246);
+    font-family: codeItalic;
+}
+
+code .prop {
+    color: rgb(255, 255, 255);
+}
+
+code .number {
+    color: rgb(157, 218, 253);
+}
+
+code .string{
+    color: rgba(254, 243, 96, 0.936);
+}
+
+code .boolean {
+    color: rgb(251, 32, 65);
+}
+
+code .quotes{
+    color: white;
+}
+
+code .coment {
+    color: rgba(220, 220, 220, 0.382);
+}
+
+code .call {
+    color: rgb(95, 232, 68);
+}
