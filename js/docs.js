@@ -2,12 +2,21 @@ import OH from "../js_docs/object_handler_docs.js";
 import EH from "../js_docs/event_handler_docs.js"
 import DH from "../js_docs/dom_handler_docs.js"
 import utils from "../modules/utils.js";
+import vconfig from "../config/version.js";
 
 const docs = {
     'oh-list': OH,
     'dh-list': DH,
     'eh-list':  EH
 }
+
+//Inicar página com essa hash se n houver
+if (window.location.hash == '') {
+    window.location.hash = 'about-aux' 
+}
+
+//Inserir informações da versão e data na sideNav
+document.getElementById('version').innerHTML = 'Versão:' + vconfig.version + ' - ' + vconfig.date
 
 
 // SIDE NAV
@@ -63,6 +72,26 @@ introItems.forEach((item) => {
         
     })
 })
+
+
+
+//Evento de click em link inline
+//Obter conteudo
+const linkTo = [...document.querySelectorAll('.link-to')]
+linkTo.forEach((link) => {
+    
+    link.addEventListener('click', () => {
+        //Clicar no item da sideNav que corresponde ao hash do link
+        const sideItems = [...document.querySelectorAll('.list-items')]
+        sideItems.forEach((item) => {
+            if (item.children[0].hash == link.hash) {
+               item.click()
+            }
+        })
+    })
+
+})
+
 
 
 
@@ -183,7 +212,7 @@ function changeDocItem(li, id) {
 }
 
 
-//MONTA O CONTEÚDO MAIN
+//MONTAR O CONTEÚDO MAIN
 function buildContent(docInf) {
     /**Armazena a propriedade de documentos referente ao item atual selecionado */
     const itemDoc = docs[docInf.group][docInf.name]
@@ -369,10 +398,13 @@ function paramsDescription(params) {
 
 //DETAILS AND EXAMPLES
 function detailsSections(detailsList) {
-
+    const detailsCapsule = document.getElementById('details-capsule')
+    detailsCapsule.innerHTML = ''
+    detailsCapsule.appendChild(utils.createElement('h2', {}, 'Mais detalhes:'))
+        
+        
     //Para cada detalhe
     detailsList.forEach((details) => {
-        const detailsCapsule = document.getElementById('details-capsule')
 
         //Criar section
         const section = utils.createElement('section', { class: 'details-section' })

@@ -28,8 +28,27 @@ const DH = {
 
         description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium optio aliquam necessitatibus sed assumenda ipsam, veniam, nulla aperiam iste aspernatur cupiditate iusto ipsum reiciendis quo beatae magnam saepe perspiciatis soluta!', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium optio aliquam necessitatibus sed assumenda ipsam, veniam, nulla aperiam iste aspernatur cupiditate iusto ipsum reiciendis quo beatae magnam saepe perspiciatis soluta!', 'Lorem ipsum dolor sit **amet consectetur adipisicing** elit. Accusantium optio aliquam necessitatibus sed assumenda ipsam, veniam, nulla aperiam iste aspernatur cupiditate iusto ipsum reiciendis quo beatae magnam saepe perspiciatis soluta!'],
         
-        details:[ {
+        details:[{
             title: 'Uso básico',
+            upText: ['Vamos verificar se algum item de um **array** corresponde a um item de outro array.'],
+
+            code: `
+            ${JS.var('arrA', ['foo', 2, true, 'hello'])}
+            ${JS.var('arrB', ['test', 'hello', 33, 'true', 100])}
+            ${JS.var('arrC', ['bar', 100, 0.2, 'oof'])}
+
+            ${JS.coment('exemplo A')}
+            ${JS.call('arrMatch', [JS.var('.arrA'), JS.var('.arrB')]) + JS.coment(true)}
+
+            ${JS.coment('exemplo B')}
+            ${JS.call('arrMatch', [JS.var('.arrC'), JS.var('.arrB')]) + JS.coment(false)}`,
+            
+
+            dawnText: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium optio aliquam necessitatibus sed assumenda ipsam, veniam, nulla aperiam iste aspernatur cupiditate iusto ipsum reiciendis quo beatae magnam saepe perspiciatis soluta!', 'L Etcetet hshshs shshsh shshadusds dugcsgii i ii ig']
+            
+        },
+        {
+            title: 'Usando argumentos de controle',
             upText: ['Vamos verificar se algum item de um **array** corresponde a um item de outro array.'],
 
             code: `
