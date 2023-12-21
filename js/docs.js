@@ -16,7 +16,7 @@ if (window.location.hash == '') {
 }
 
 //Inserir informações da versão e data na sideNav
-document.getElementById('version').innerHTML = 'Versão:' + vconfig.version + ' - ' + vconfig.date
+document.getElementById('version').innerHTML = 'Versão: ' + vconfig.version + ' - ' + vconfig.date
 
 
 // SIDE NAV

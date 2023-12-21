@@ -229,21 +229,22 @@ body * {
 }
 
 /* sections */
-.content > section {
+.description {
     margin-top: 1.5em;
 }
 
-.content > section > h2 {
+.description > h2 {
     margin-bottom: .6em;
     border-bottom: 1px solid rgba(137, 138, 137, 0.521);
 }
 
-.content > section > p {
+.description > p {
     text-indent: .5em;
     margin-top: .3em;
 }
 
-.description #description-field > p{
+.description #description-field,
+.description > .description-field > p{
     text-indent: 1em;
     margin-top: .3em;
 

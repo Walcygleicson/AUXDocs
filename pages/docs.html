@@ -83,7 +83,85 @@
         <!-- CONTEUDO RELACIONADO A INTRODUÇÃO -->
         <div class="aside-content">
             <section class="about-aux intro-sections" id="about-aux">Sobre Aux</section>
-            <section class="control_args intro-sections" id="control_args">Sobre Control_Args</section>
+
+            <section class="control_args intro-sections" id="control_args">
+
+                <div class="content-head">
+                    <h1 class="name">
+                        <span>control_arg:</span>
+                    </h1>
+                
+                    <div class="details-by">
+                        Parâmetro Padrão | Opcional
+                    </div>
+                </div>
+                <section class="description">
+                    <h2>Descrição:</h2>
+                    <div class="description-field">
+                        <p>Trata-se de um <b>parâmetro opcional padrão</b> presente em quase todos os módulos AUX. Um módulo pode ter ou não um ou mais parâmetros denomidados de <b>control_arg</b> (control_arg2, control_arg3...) que são usados para alterar o comportamento padrão de um módulo, isso redefine o modo como ele trabalha e retorna um resultado.</p>
+                        <p>Um módulo tem sua funcionalidada padrão preservada quando os parâmetros <b>control_arg</b> são omitidos. Mas se um argumento válido for passado sua funcionalidade é definida para o que o argumento solicita, isso também pode mudar os valores e tipo que esse módulo retorna. Estes <b>argumentos válidos</b> são os chamados de argumentos de controle e são geralmente uma string passada no parâmetro e esses valores string são geralmente pré-definidos e cada módulo tem seus argumentos padrões. Para saber quais argumentos um módulo recebe deve-se verificar a documentação deste. Se o módulo possuir um ou mais parâmetros de argumentos de controle a documentação listará todos os argumentos que cada parâmetro pode receber, o que ela faz e suas regras.</p>
+                        <p>Alguns parâmetros possuem regras e só podem ser usados em determinados momentos. Caso essa regra não seja seguida um erro é disparado interrompendo a execução do código. Veja a seguir:</p>
+
+                        <div class="examples">
+                            <h3>Usando argumentos de controle:</h3>
+
+
+                            <p>Temos uma função chamada <a class="link-to" href="#teste1" title="Ir para documentação">arrMatch( )</a> que faz uma verificação em dois arrays e retorna <b>true</b> se um ou mais elementos do primeiro array também existir no segundo array. Este é o comportamento padrão da função se apenas os arrays forem passados como argumentos.</p>
+                            <pre class="example-code" id="ex1"></pre>
+
+
+                            <p>Mas esta função possui mais dois parâmetros opcionais; os <b>control_arg</b>. Lendo a documentação sobre esta função descobrimos que o terceiro parâmetro recebe alguns argumentos do tipo string pré-definidos. São eles:</p>
+                            <ul class="CA-lists">
+                                <li>"all"</li>
+                                <li>"list"</li>
+                                <li>"details"</li>
+                                <li>"length"</li>
+                                <li>"default"</li>
+                            </ul>
+
+                            <p class="warn-text">Nota: Os argumentos listados e outros serão usados como exemplos. A funcionalidade de cada argumento apresentado abaixo não é uma regra para todos os módulos que as usam, onde cada módulo pode retornar resultados diferentes usando os mesmos argumentos desta lista.</p>
+
+                            <p>Vamos ver o que cada um faz.</p>
+                            <p>O argumento <b>"all"</b> se declarado em <b>control_arg</b> diz para a função verificar se todos os valores de <b>arrA</b> existem em <b>arrB</b>. O retorno ainda será um <b>boolean.</b></p>
+                            <pre class="example-code" id="ex2"></pre>
+
+                            <p>Já o argumento <b>"list"</b> altera tanto o modo de verificação quanto o valor de retorno. Se usado diz para a função verificar quais valores do primeiro array estão presentes no segundo array e retorna um novo array contendo esses valores.</p>
+                            <p>O argumento <b>"details"</b> trabalha semelhante ao argumento <b>"list"</b> porém retorna um array contendo um objeto para cada item de <b>arraA</b> que estiver presente em <b>arrB</b>. Cada objeto tem propriedades que fornece algumas informações sobre a busca.</p>
+                            <p>O argumento <b>"length"</b> retorna um número que representa a quantidade de valores de <b>arrA</b> que estão presentes em <b>arrB</b>.</p>
+                            <p>Já o último argumento <b>"default"</b>, presente em todos os módulos que possuem um parâmetro <b>control_arg</b>, é o argumento padrão deste parâmetro. Se nada for passado em nenhum parâmetro de argumento de controle o valor padrão é <b>"default"</b>.</p>
+                            <pre class="example-code" id="ex3"></pre>
+                            <p>Note que cada argumento tem a habilidade que mudar toda a estrutura do retorno da função deste exemplo, isto sempre deve ser levado em consideração na hora de usá-los em um projeto, pois o não conhecimento destes pode ababar trazendo resultados inesperados que podem comprometer a estrutura do projeto.</p>
+
+                            
+                        </div>
+                        
+                        <div class="examples">
+                            <h3>control_arg2 ?:</h3>
+
+                            <p>Uma função pode possuir mais de um parâmetro do tipo <b>control_arg</b>, se você se notar isso em um módulo isso significa a funcionalidade do argumento anterior pode trabalhar em conjunto com mais funcionalidades. Em outras palavras um segundo parâmetro do tipo <b>control_arg</b> altera a funcionalidade do primeiro parâmetro do mesmo tipo.</p>
+                            <p>Parece confuso? Calma que há como explicar.</p>
+                            <p>Vamos usar a mesma função dos exemplos acima, já que este também possui um quarto parâmetro chamado <b>control_arg2</b>. Além de argumentos pré-definidos do tipo string, o parâmetro anterior, <b>control_arg</b> também aceita receber um número como argumento, se passado um argumento numérico inteiro a função irá verificar se a quantidade de valores de <b>arrA</b> que estão presentes em <b>arrB</b> é igual ao número passado e retorna um <b>boolean</b>. Com isto podemos usar mais dois argumentos pre-definidos no parâmetro <b>control_arg2</b>. São eles:</p>
+
+                            <ul class="CA-lists">
+                                <li>"min"</li>
+                                <li>"max"</li>
+                            </ul>
+
+                            <p>O argumento <b>"min"</b> define que a quantidade mínima de valores de <b>arrA</b> que correspondem deve ser o valor passado no parâmetro anterior e retorna <b>true</b>, se a quantidade passar o retorno é <b>false</b>, enquanto o argumento <b>"max"</b> faz o oposto e define que a quantidade máxima de valores de <b>arrA</b> que correspondem à <b>arrB</b> deve ser o valor passado anteriormente e também retorna um <b>boolean</b>. Veja:</p>
+                            <pre class="example-code" id="ex4"></pre>
+                            <p>Note que o uso de um segundo parâmetro do tipo <b>control_ar</b> dita novas regras sobre as regras já estabelecidades no uso do parâmetro anterior. Deve-se notar também parâmetros dete tipo podem receber outros tipos de argumentos além dos padrões pre-defindios, como é o caso desta função.</p>
+                            <p>Os argumentos listados aqui não são todos. Cada módulo possui sua particularidade e pode ou não compartilhar dos mesmos argumentos, ou podem ou não usar os mesmos argumentos em situações diferentes com resultados diferentes.</p>
+                            <p>Este artigo é apenas introdutório, para se aprofundar em mais detalhes deve-se seguir para as demais categorias litadas na aba de navegação.</p>
+
+                            <p class="warn-text">Nota: Os exemplos acima não possuem o intuito de ensinar o uso da função e nem seus parâmetros e argumentos de controle. A explicação aqui não está completa e serve somente de exemplo para complementar este material. Para detalhes amis abrangentes sobre a função <a href="#teste1" class="link-to" title="Ir para documentação">arrMatch( )</a>  consulte a documentação da mesma.</p>
+
+                        </div>
+
+                    </div>
+                    
+                </section>
+
+            </section>
 
         </div>
         <!-- CONTEÚDO RELACIONADO A DOCUMENTAÇÃO DOS MÓDULOS -->
@@ -158,6 +236,7 @@
         </div>
     </footer>
 
+    <script src="../js/control-args-example-codes.js" type="module"></script>
     <script src="../js/docs.js" type="module"></script>
 </body>
 

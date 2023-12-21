@@ -10,3 +10,32 @@
     /* teste */
     display: none;
 }
+
+.control_args .examples {
+    margin: 2em 0;
+}
+
+.control_args .examples p {
+    text-indent: 1em;
+    margin-top: .5em;
+}
+
+.CA-lists{
+    padding-left: 3em;
+    list-style-type: circle;
+    margin-top: .5em;
+}
+
+
+.CA-lists > li {
+    list-style-type: disc;
+    font-weight: bold;
+    font-size: .9em;
+    font-style: italic;
+}
+
+.control_args .warn-text {
+    border: 1px solid rgba(255, 219, 135, 0.696);
+    background: rgba(255, 255, 174, 0.17);
+    padding: 2px 1em;
+}
