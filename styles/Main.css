@@ -190,3 +190,12 @@
     text-indent: 1em;
     margin-top: .5em;
 }
+
+/* MEDIAS */
+@media screen and (max-width: 650px){
+    .content {
+        margin: 0 .5em 2em .5em;
+        padding: 3em 1.5em;
+    }
+
+}

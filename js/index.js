@@ -25,6 +25,7 @@ document.getElementById('v-date').innerHTML = vconfig.date
 
 //Evento de load da janela
 window.addEventListener('load', () => {
+    addMediaClassName()
     changeDocItem()
 })
 

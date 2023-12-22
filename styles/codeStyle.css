@@ -13,10 +13,11 @@
 .example-code {
     background: rgb(63, 53, 71);
     color: rgb(255, 224, 222);
-    padding: .5em 0;
+    padding: 1em 1em 1em 2em;
     border-radius: 10px;
     margin: 1em 0;
-    white-space: break-spaces;
+    /* white-space: break-spaces; */
+    overflow-x: auto;
 }
 
 
@@ -56,4 +57,10 @@ code .coment {
 
 code .call {
     color: rgb(95, 232, 68);
+}
+
+@media screen and (max-width: 650px){
+    .example-code {
+        font-size: .7em;
+    }
 }

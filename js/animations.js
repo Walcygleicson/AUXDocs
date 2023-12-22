@@ -10,13 +10,15 @@ openNavButton.addEventListener('click', () => {
 const anim = {
     openSideNav() {
         const aside = document.getElementById('aside')
-        if (navOn) {
-            aside.style.left = '-325px'
-            navOn = !navOn
-            
-        } else {
-            aside.style.left = 0
-            navOn = !navOn
+        if (aside.classList.contains('media-tablet')) {
+            if (navOn) {
+                aside.style.left = '-325px'
+                navOn = !navOn
+                
+            } else {
+                aside.style.left = 0
+                navOn = !navOn
+            }
         }
         
     },
@@ -36,3 +38,25 @@ const anim = {
         window.scroll({top:0, left: 0, behavior: 'smooth'})
     }
 }
+
+
+//Verificar Media Query sempre que a janela for redimencionada
+window.addEventListener('resize', () => {
+    addMediaClassName()
+})
+
+//função que add classe 'media-tablet'no body
+function addMediaClassName() {
+    
+    const aside = document.getElementById('aside')
+    if (window.matchMedia('(max-width: 1080px)').matches) {
+        aside.classList.add('media-tablet')
+    } else {
+        aside.classList.remove('media-tablet')
+        aside.removeAttribute('style')
+        navOn = false
+    }
+    
+}
+
+
