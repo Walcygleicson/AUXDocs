@@ -14,9 +14,16 @@ const docs = {
 if (window.location.hash == '') {
     window.location.hash = 'about-aux' 
 }
+//Rolar pro topo ao recarregar a página
+const scrollTop = () => {
+    window.scroll({top:0, left: 0, behavior: 'smooth'})
+    
+}
 
-//Inserir informações da versão e data na sideNav
+//Inserir informações da versão e data na sideNav e secção intro
 document.getElementById('version').innerHTML = 'Versão: ' + vconfig.version + ' - ' + vconfig.date
+document.getElementById('v-number').innerHTML = 'Versão ' + vconfig.version
+document.getElementById('v-date').innerHTML = vconfig.date
 
 
 // SIDE NAV
@@ -31,6 +38,8 @@ const introItems = [...document.querySelectorAll('.intro-items')]
 introItems.forEach((item) => {
     //EVENTO DE CLICK
     item.addEventListener('click', () => {
+        addFade()
+        
         //Habilitar container do conteúdo aside
         document.querySelector('.aside-content').style.display = 'block'
 
@@ -58,7 +67,8 @@ introItems.forEach((item) => {
         const liHash = item.children[0].href.split('#')[1] // Pegar hash do item
         const introSections = [...document.querySelectorAll('.intro-sections')]
         introSections.forEach((section) => {
-            if (section.id == liHash) {
+            if (section.classList.contains(liHash)) {
+
                 section.style.display = 'block'
             } else {
                 section.style.display = 'none'
@@ -67,8 +77,7 @@ introItems.forEach((item) => {
 
         //Esconder Conteudo da documentação
         document.querySelector('.content').style.display = 'none'
-        
-
+        scrollTop()
         
     })
 })
@@ -91,6 +100,16 @@ linkTo.forEach((link) => {
     })
 
 })
+
+const addFade = ()=>{
+    const main = document.getElementById('main')
+    main.removeAttribute('class')
+    main.classList.add('fade-transition')
+    
+    setTimeout(() => {
+        main.removeAttribute('class') 
+    }, 500)
+}
 
 
 
@@ -115,7 +134,10 @@ listId.forEach((id) => {
         list.appendChild(li) //Adiciona o elemento criado na ul
 
         //Evento de click nos li crados dinamicamente
-        li.addEventListener('click', () => { changeDocItem(li, id) })
+        li.addEventListener('click', () => {
+            addFade()
+            changeDocItem(li, id)
+        })
 
     })
 })
@@ -123,7 +145,7 @@ listId.forEach((id) => {
 
 //Ataulizar conteúdo da documentação
 function changeDocItem(li, id) {
-
+    scrollTop()
     //Marcar item atual selecionado na barra de navegação lateral
     const items = [...document.querySelectorAll('.list-items')]
     var sumary = [...document.querySelectorAll('.sumary')]
@@ -171,7 +193,7 @@ function changeDocItem(li, id) {
                     //Habilitar container dos conteudos aside
                     document.querySelector('.aside-content').style.display = 'block'
                     //Habilitar conteúdo relacionado ao hash ativo
-                    document.getElementById(hash).style.display = 'block'
+                    document.querySelector('.'+hash).style.display = 'block'
                     //Desabilitar conteudo da documentação
                     document.querySelector('.content').style.display = 'none'
                 }
@@ -189,7 +211,6 @@ function changeDocItem(li, id) {
     if (li && id) {
         //Estilizar current-item
         sumary = document.getElementById(id.replace('list', 'sumary'))
-
 
         //Adicionar classe current-item ao li clicado
         li.classList.add('current-item')
@@ -214,6 +235,7 @@ function changeDocItem(li, id) {
 
 //MONTAR O CONTEÚDO MAIN
 function buildContent(docInf) {
+    //addFade()
     /**Armazena a propriedade de documentos referente ao item atual selecionado */
     const itemDoc = docs[docInf.group][docInf.name]
 
