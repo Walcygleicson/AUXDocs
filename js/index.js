@@ -14,11 +14,6 @@ const docs = {
 if (window.location.hash == '') {
     window.location.hash = 'about-aux' 
 }
-//Rolar pro topo ao recarregar a página
-const scrollTop = () => {
-    window.scroll({top:0, left: 0, behavior: 'smooth'})
-    
-}
 
 //Inserir informações da versão e data na sideNav e secção intro
 document.getElementById('version').innerHTML = 'Versão: ' + vconfig.version + ' - ' + vconfig.date
@@ -38,7 +33,8 @@ const introItems = [...document.querySelectorAll('.intro-items')]
 introItems.forEach((item) => {
     //EVENTO DE CLICK
     item.addEventListener('click', () => {
-        addFade()
+        anim.addFade()
+        anim.openSideNav()
         
         //Habilitar container do conteúdo aside
         document.querySelector('.aside-content').style.display = 'block'
@@ -77,7 +73,7 @@ introItems.forEach((item) => {
 
         //Esconder Conteudo da documentação
         document.querySelector('.content').style.display = 'none'
-        scrollTop()
+        anim.scrollTop()
         
     })
 })
@@ -100,16 +96,6 @@ linkTo.forEach((link) => {
     })
 
 })
-
-const addFade = ()=>{
-    const main = document.getElementById('main')
-    main.removeAttribute('class')
-    main.classList.add('fade-transition')
-    
-    setTimeout(() => {
-        main.removeAttribute('class') 
-    }, 500)
-}
 
 
 
@@ -135,7 +121,8 @@ listId.forEach((id) => {
 
         //Evento de click nos li crados dinamicamente
         li.addEventListener('click', () => {
-            addFade()
+            anim.addFade()
+            anim.openSideNav()
             changeDocItem(li, id)
         })
 
@@ -145,7 +132,7 @@ listId.forEach((id) => {
 
 //Ataulizar conteúdo da documentação
 function changeDocItem(li, id) {
-    scrollTop()
+    anim.scrollTop()
     //Marcar item atual selecionado na barra de navegação lateral
     const items = [...document.querySelectorAll('.list-items')]
     var sumary = [...document.querySelectorAll('.sumary')]
