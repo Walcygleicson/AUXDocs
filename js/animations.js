@@ -43,6 +43,7 @@ const anim = {
 //Verificar Media Query sempre que a janela for redimencionada
 window.addEventListener('resize', () => {
     addMediaClassName()
+    //setCodeBlockWidth()
 })
 
 //função que add classe 'media-tablet'no body
@@ -57,6 +58,18 @@ function addMediaClassName() {
         navOn = false
     }
     
+}
+
+//Largura do bloco de código
+
+function setCodeBlockWidth() {
+    const mainWidth = document.getElementById('main').getBoundingClientRect().width.toFixed(2)
+    console.log(mainWidth)
+    console.log(document.getElementById('main').getBoundingClientRect().width.toFixed(2))
+    const codeBlocks = [...document.querySelectorAll('.example-code')]
+    codeBlocks.forEach((block) => {
+        block.style.width = (mainWidth - 263) + 'px'
+    })
 }
 
 

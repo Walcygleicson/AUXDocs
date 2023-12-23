@@ -39,3 +39,15 @@
     background: rgba(255, 255, 174, 0.17);
     padding: 2px 1em;
 }
+
+/* MEDIAS */
+
+@media screen and (max-width: 650px){
+    .control_args {
+        margin: 0 .5em 2em .5em;
+        padding: 3em 1.5em;
+        margin-bottom: 2em;
+
+    }
+
+}

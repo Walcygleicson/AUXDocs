@@ -27,6 +27,7 @@ document.getElementById('v-date').innerHTML = vconfig.date
 window.addEventListener('load', () => {
     addMediaClassName()
     changeDocItem()
+    //setCodeBlockWidth()
 })
 
 //Evento de click nos items da categoria Introdução (que não são criados dinamicamente)

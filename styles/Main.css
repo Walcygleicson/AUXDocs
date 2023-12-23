@@ -51,12 +51,12 @@
     margin-top: 1.5em;
 }
 
-.description>h2 {
+.content section > h2 {
     margin-bottom: .6em;
     border-bottom: 1px solid rgba(137, 138, 137, 0.521);
 }
 
-.description>p {
+.description > p {
     text-indent: .5em;
     margin-top: .3em;
 }
@@ -97,7 +97,7 @@
     margin-top: 2em;
 }
 
-.params>h3 {
+.params > h3 {
     border-bottom: 1px solid var(--color-gray-border);
     width: fit-content;
     padding: 0 .5em;
@@ -120,11 +120,11 @@
     color: white;
 }
 
-.params .arg-type>span {
+.params .arg-type > span {
     color: var(--color-pink-dead);
 }
 
-.params .params-list>li {
+.params .params-list > li {
     margin: 1em 0 0 1.5em;
 }
 
@@ -132,9 +132,11 @@
     padding: .5em 0 0 2em;
 }
 
-.description>.note {
+.description > .note {
     border: 1px solid rgb(236, 208, 149);
+    padding: 1px 1em;
     background: rgba(255, 255, 135, 0.345);
+    margin-top: 1em;
 }
 
 .link-to::after {
@@ -166,11 +168,11 @@
     margin: 1em 0;
 }
 
-.control-args .arg-li>p {
+.control-args .arg-li > p {
     padding-left: 1.5em;
 }
 
-.control-args .arg-li+.arg-li {
+.control-args .arg-li + .arg-li {
     margin-top: .5em;
 }
 
@@ -196,6 +198,43 @@
     .content {
         margin: 0 .5em 2em .5em;
         padding: 3em 1.5em;
+    }
+    
+
+    .content-head {
+        font-size: .8em;
+    }
+
+    .returns * {
+        font-size: .8em;
+    }
+
+    section h2 {
+        font-size: 1.2em;
+    }
+
+    section h3 {
+        font-size: 1em;
+    }
+
+    .note {
+        font-size: .8em;
+    }
+
+    .params .param-name {
+        font-size: .95em;
+    }
+
+    .control-args {
+        padding: 1em;
+    }
+
+    .params .params-list > li {
+        margin: 1em 0;
+    }
+
+    .params .param-description {
+        padding: .5em 0 0 1em;
     }
 
 }
