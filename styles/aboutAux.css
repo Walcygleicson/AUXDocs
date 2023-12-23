@@ -86,3 +86,13 @@
     margin: 1em 0;
 }
 
+
+/* MEDIAS */
+
+@media screen and ( max-width: 650px){
+    .about-aux{
+        margin: 0 .5em 2em .5em;
+        padding: 3em 1.5em;
+        margin-bottom: 2em;
+    }
+}

@@ -499,55 +499,6 @@ const parseBoldMarks = function (text) {
 }
 
 
-//ANIMAÇÕES
-//Contrair as categorias da barra lateral quando o footer surgir na tela
-const footer = document.getElementById('footer')
-var entered = false
-var exited = true
-
-window.addEventListener('scroll', () => {
-    const pos = footer.getBoundingClientRect().top
-    const screenH = window.innerHeight
-    
-    //Enquanto o footer n entrar checkar
-    if (!entered && exited) {
-        if (pos < screenH) {
-            entered = true
-            exited = false
-        }
-        if (entered) {
-            closeDetails(true)
-        }
-    }
-    
-    //Se o footer entrou enquanto não sair chrckar
-    if (entered && !exited) {
-        if (pos > screenH) {
-            entered = false
-            exited = true
-        }
-        
-        if (exited) {
-            closeDetails(false)
-        }
-    }
-    
-    
-})
-
-
-const closeDetails = (close) => {
-    const sideDetails = [...document.querySelectorAll('.scroller-container > details')]
-
-    sideDetails.forEach((aba) => {
-        if (close) {
-            aba.open = false
-        } else {
-            aba.open = true
-        }
-    })
-    
-}
 
 //Função criada por IA
 //Função que verifica se um elemento entrou e saiu da janela ao rolar a página com js puro

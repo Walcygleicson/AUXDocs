@@ -1,3 +1,5 @@
+const aside = document.getElementById('aside')
+const main = document.getElementById('main')
 
 //Click no botão de abrir sideNav
 const openNavButton = document.querySelector('.side-nav-button')
@@ -9,7 +11,6 @@ openNavButton.addEventListener('click', () => {
 //Função mostrar e esconder side nav
 const anim = {
     openSideNav() {
-        const aside = document.getElementById('aside')
         if (aside.classList.contains('media-tablet')) {
             if (navOn) {
                 aside.style.left = '-325px'
@@ -24,7 +25,6 @@ const anim = {
     },
 
     addFade(){
-        const main = document.getElementById('main')
         main.removeAttribute('class')
         main.classList.add('fade-transition')
         
@@ -60,16 +60,61 @@ function addMediaClassName() {
     
 }
 
-//Largura do bloco de código
 
-function setCodeBlockWidth() {
-    const mainWidth = document.getElementById('main').getBoundingClientRect().width.toFixed(2)
-    console.log(mainWidth)
-    console.log(document.getElementById('main').getBoundingClientRect().width.toFixed(2))
-    const codeBlocks = [...document.querySelectorAll('.example-code')]
-    codeBlocks.forEach((block) => {
-        block.style.width = (mainWidth - 263) + 'px'
+//Contrair categorias da aba de navegação lateral quando o Footer entrar na tela
+const footer = document.getElementById('footer')
+var entered = false
+var exited = true
+window.addEventListener('scroll', () => {
+
+    if (!aside.classList.contains('media-tablet')) {
+        
+        const pos = footer.getBoundingClientRect().top
+        const screenH = window.innerHeight
+        //Enquanto o footer n entrar checkar
+        if (!entered && exited) {
+            if (pos < screenH) {
+                entered = true
+                exited = false
+            }
+            if (entered) {
+                closeDetails(true)
+            }
+        }
+        
+        //Se o footer entrou enquanto não sair chrckar
+        if (entered && !exited) {
+            if (pos > screenH) {
+                entered = false
+                exited = true
+            }
+            
+            if (exited) {
+                closeDetails(false)
+            }
+        }
+    } else {
+        closeDetails(false)
+        entered = false
+        exited = true
+    }
+    
+    
+})
+
+
+const closeDetails = (close) => {
+    const sideDetails = [...document.querySelectorAll('.scroller-container > details')]
+
+    sideDetails.forEach((aba) => {
+        if (close) {
+            aba.open = false
+        } else {
+            aba.open = true
+        }
     })
+    
 }
+
 
 

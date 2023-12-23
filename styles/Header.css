@@ -78,6 +78,7 @@ header * {
 
 .side-nav-button:active{
     opacity: 60%;
+    user-select: none;
 }
 
 
