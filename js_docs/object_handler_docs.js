@@ -43,7 +43,9 @@ const OH = {
 
                     min: ['Define que a quantidade mínima de valores de **arr_a** que correspondem a **arr_b** deve ser o valor numérico passado no parâmetro anterior e retorna um **boolean**. Se a quantidade for maior ou igual ao valor numérico passado retorna **true**, caso seja menor retorna **false**.'],
                     
-                    max: ['Faz o oposto que o argumento anterior e define que a quantidade máxima de valores de **arr_a** que correspondem a **arr_b** deve ser o valor numérico passado e retorna um **boolean**. Se a quantidade for menor ou igual ao valor numérico passado retorna **true**, caso seja maior retorna **false**.']
+                    max: ['Faz o oposto que o argumento anterior e define que a quantidade máxima de valores de **arr_a** que correspondem a **arr_b** deve ser o valor numérico passado e retorna um **boolean**. Se a quantidade for menor ou igual ao valor numérico passado retorna **true**, caso seja maior retorna **false**.'],
+
+                    default: ['Se nada for passado o valor padrão é "**default**".']
 
                 }
             }
@@ -53,22 +55,58 @@ const OH = {
         'Deve ser observado que sempre é verificado se o valores do primeiro array (**arr_a**) estão presentes no segundo array (**arr_b**) e nunca o oposto.'],
         
         details:[ {
-            title: 'Uso básico',
-            upText: ['Vamos verificar se algum item de um **array** corresponde a um item de outro array.'],
+            upText: ['Verificando se um ou mais itens de um array existem em outro array de forma simples e sem o uso de laços de repetição. Veja:'],
 
-            code: `
-            ${JS.var('arrA', ['foo', 2, true, 'hello'])}
-            ${JS.var('arrB', ['test', 'hello', 33, 'true', 100])}
-            ${JS.var('arrC', ['bar', 100, 0.2, 'oof'])}
+            code:`${JS.var('arr1', ['foo', 2, true, 'hello'])}
+${JS.var('arr2', ['bar', 78, 0.2, 'hi'])}
+${JS.var('arr3', ['test', 'hello', 33, 'false', 100])}
 
-            ${JS.coment('exemplo A')}
-            ${JS.call('arrMatch', [JS.var('.arrA'), JS.var('.arrB')]) + JS.coment(true)}
+${JS.coment('exemplo A')}
+${JS.call('arrMatch', [JS.var('.arr1'), JS.var('.arr3')]) + JS.coment(true)}
 
-            ${JS.coment('exemplo B')}
-            ${JS.call('arrMatch', [JS.var('.arrC'), JS.var('.arrB')]) + JS.coment(false)}`,
+${JS.coment('exemplo B')}
+${JS.call('arrMatch', [JS.var('.arr2'), JS.var('.arr3')]) + JS.coment(false)}`,
             
 
-            dawnText: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium optio aliquam necessitatibus sed assumenda ipsam, veniam, nulla aperiam iste aspernatur cupiditate iusto ipsum reiciendis quo beatae magnam saepe perspiciatis soluta!', 'L Etcetet hshshs shshsh shshadusds dugcsgii i ii ig']
+            dawnText: ['No exemplo **A** o retorno é **true** pois o valor "hello" do array **arr1** também existem em **arr2**. Já no exemplo **B** o retorno é **false** pois nenhum valor de **arr2** foi encontrado em **arr3**.']
+            
+        },
+        
+        {
+            title: 'Usando o argumento "all"',
+             
+            upText: ['Verificando se todos os itens de um array também existem em outro array.'],
+
+            code: `${JS.var('myName', 'Lucas')}
+${JS.var('arr1', ['foo', true, 'hello', 33, 'Lucas'])}
+${JS.var('arr2', ['bar', 100, 78, 'true'])}
+${JS.var('arr3', ['foo', 'hello', 33, 'bar', 100, true, '78', JS.var('.myName')])}
+
+${JS.coment('exemplo A')}
+${JS.call('arrMatch', [JS.var('.arr1'), JS.var('.arr3'), 'all']) + JS.coment(true)}
+${JS.coment('exemplo B')}
+${JS.call('arrMatch', [JS.var('.arr2'), JS.var('.arr3'), 'all']) + JS.coment(false)}
+
+${JS.coment('------------------------')}
+
+${JS.var('names1', ['Lucas', 'Ana'])}
+${JS.var('names2', ['Lucas', 'Ana'])}
+
+${JS.coment('exemplo C')}
+${JS.call('arrMatch', [JS.arr([JS.var('.names1'), 'Bill']), JS.arr([JS.var('.names2'), 'Bill']), 'all']) + JS.coment(false)}
+${JS.coment('exemplo D')}
+${JS.call('arrMatch', [JS.arr([JS.var('.names1'), 'Bill']), JS.arr([JS.var('.names1'), 'Bill']), 'all']) + JS.coment(true)}`,
+            
+            dawnText: ['No exemplo A o retorno é **true** pois todos os itens de **arr1** existem em **arr3**. Já no exemplo B o retorno é **false** pois nem todos os item de **arr2** existem em **arr3**.',
+            'Note que os valores que invalidaram a busca no exemplo B foram o número 78 e a string "true". Por mais que esses valores também existam em **arr3** seus tipos são diferentes. Deve ser verificado os tipos do valores antes de qualquer validação para que não haja resultados inesperados.',
+            'Já no exemplo C o retorno pode parecer meio inusitado pois pensamos que o retorno deveria ser **true** já que ambos os arrays analisados possuem um array contendo os mesmos nomes de pessoa e mais o nome Bill fora dele, porém neste caso não é assim que é trabalhado. Por mais que ambas as variáveis sejam arrays que possuem os mesmos valores, ambas são objetos diferentes, e neste caso não é analisado o conteúdo das variáveis contidas nos arrays e sim se são os mesmos objetos. Esta regra serve para qualquer tipo de lista ou dicionário', 'O exemplo D retorna um **true** pois agora ambos os array analisados possuem a mesma variável e o mesmo valor "Bill".']
+            
+        },
+        {
+            title: 'Usando o argumento "list"',
+            upText: [],
+            code: ``,
+            dawnText: []
             
         }]
     },

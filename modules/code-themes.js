@@ -115,20 +115,18 @@ export const JS = {
 
     obj(props) {
         return arr_obj(props)
+    },
+
+    arr(arr) {
+        return '[ '+ arr.map((item) => {
+            return parseType(item)
+        }).join(', ') + ' ]'
     }
 }
 
 
 function parseType(value) {
 
-
-    if (getType(value) == 'array') {
-        value.forEach((item, i) => {
-            value[i] = parser(item)
-        })
-    }
-
-    
     const parser = (v) => {
         if (getType(v) == 'string' && v.includes('</span>')) {
             return v
@@ -141,6 +139,14 @@ function parseType(value) {
         }
 
     }
+
+    if (getType(value) == 'array') {
+        value.forEach((item, i) => {
+            value[i] = parser(item)
+        })
+    }
+
+    
 
     return parser(value)
 }

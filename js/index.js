@@ -3,6 +3,7 @@ import EH from "../js_docs/event_handler_docs.js"
 import DH from "../js_docs/dom_handler_docs.js"
 import utils from "../modules/utils.js";
 import vconfig from "../config/version.js";
+import { JS } from "../modules/code-themes.js";
 
 const docs = {
     'oh-list': OH,
@@ -510,3 +511,5 @@ const parseBoldMarks = function (text) {
 //         rect.top <= (window.innerHeight || document.documentElement.clientHeight)
 // }
 
+
+console.log(JS.arr([1]))
