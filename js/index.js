@@ -509,5 +509,4 @@ const parseBoldMarks = function (text) {
 //         rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
 //         rect.top <= (window.innerHeight || document.documentElement.clientHeight)
 // }
-    
 

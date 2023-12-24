@@ -1,0 +1,83 @@
+
+.__npt-capsule {
+    border: 1px solid green;
+    background-color: rgb(17, 74, 64);
+    border-radius: 20px;
+    width: fit-content;
+    display: flex;
+    column-gap: .5em;
+    padding: 3px;
+}
+
+.__npt-capsule .__npt-search-btn{
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    justify-content: center;
+    outline: none;
+}
+
+.--inpt-expanse:focus + .__npt-search-btn,
+.--inpt-expanse:hover + .__npt-search-btn,
+.--inpt-expanse:hover + .__npt-search-btn:hover{
+    background-color: white;
+}
+
+.--inpt-expanse:focus{
+    display: block;
+}
+
+.__npt-capsule:hover input{
+    display: block;
+}
+
+
+
+
+.__npt-capsule svg {
+    width: 100%;
+    height: 100%;
+    fill: rgb(52, 207, 135);
+}
+
+.__npt-capsule .__npt-search-btn:hover svg{
+    animation: bounce-rotate 1.5s;
+}
+
+.--inpt-expanse{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: white;
+    border-radius: 15px;
+    text-indent: 1em;
+    display: none;
+}
+
+.--inpt-expanse::placeholder{
+    color: rgb(131, 162, 145);
+}
+
+@keyframes bounce-rotate {
+    0%{
+        rotate:  0deg;
+    }
+
+    25% {
+        rotate: 15deg;
+    }
+
+
+    75%{
+        rotate: -30deg;
+    }
+
+    100%{
+        rotate: 0deg;
+    }
+}
