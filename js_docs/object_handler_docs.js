@@ -23,9 +23,9 @@ const OH = {
                 args: {
                     all: ['Diz para a função verificar se todos os valores de **arr_a** estão presentes em **arr_b** e retorna um **boolean**.'],
 
-                    list: ['Diz para a função verificar quais valores de **arr_a** estão presentes em **arr_b** e retorna um novo **array** contendo esse valores. Observe que a lista de valores retornada conterá somente os valores do primeiro array que corresponderem.'],
+                    list: ['Diz para a função verificar quais valores de **arr_a** estão presentes em **arr_b** e retorna um novo **array** contendo esse valores. Observe que a lista de valores retornada conterá somente os valores do primeiro array que corresponderem.','Se nenhum valor for encontrado retorna um array vazio.'],
 
-                    details: ['Funciona semelhante ao argumento anterior porém seu método de busca e o retorno são diferentes.', 'Diz para a função verificar quais valores de **arr_a** estão presentes em **arr_b** e retorna um novo **array** contendo um objeto para cada valor correspondente.', 'Cada objeto contém o item correspondente, o índice deste item, o índice da primeira ocorrência do item no segundo array e o tipo deste item.', 'Nota: Ao invés de "**details**", no plural, também é possível usar "**detail**" no singular!'],
+                    details: ['Funciona semelhante ao argumento anterior porém seu método de busca e o retorno são diferentes.', 'Diz para a função verificar quais valores de **arr_a** estão presentes em **arr_b** e retorna um novo **array** contendo um objeto para cada valor correspondente.', 'Cada objeto contém o item correspondente, o índice deste item, o índice da primeira ocorrência do item no segundo array e o tipo deste item.', 'Se nenhum valor for encontrado retorna um array vazio.', 'Nota: Ao invés de "**details**", no plural, também é possível usar "**detail**" no singular!'],
 
                     length: ['Retorna um **number** que corresponde a quantidade de valores de **arr_a** que estão presentes em **arr_b**.', 'Nota: Ao invés de usar "**length**" também é possível usar a abreviação "**len**".'],
 
@@ -104,11 +104,55 @@ ${JS.call('arrMatch', [JS.arr([JS.var('.names1'), 'Bill']), JS.arr([JS.var('.nam
         },
         {
             title: 'Usando o argumento "list"',
-            upText: [],
-            code: ``,
-            dawnText: []
+            upText: ['Verificando quais itens do primeiro array estão presentes no segundo array e retornando esses itens em um novo array.'],
+            code: `${JS.var('arr1', ['bar', 33, 78, 'JS', 'PHP', 1.5, true, 'hello', 33])}
+${JS.var('arr2', ['foo', true, 'hello', 33, 'Lucas', 'bar', 'C++', 40, 'bar'])}
+
+${JS.call('arrMatch', [JS.var('.arr1'), JS.var('.arr2'), 'list']) + JS.coment('[ "bar", 33, true, "hello", 33 ]')}
+`,
+            dawnText: ['A função retorna uma lista na ordem com todos os itens de **arr1** que aparecem em **arr2**.',
+            'Note que o valor 33 se repete duas vezes em **arr1**, logo aparece duas vezes na lista do retorno. Já em **arr2** a string **"bar"** se repete duas vezes, mas na lista de retorno só aparece uma vez. Deve-se sempre lembrar que a função só analisa se um item do primeiro array existe em outro, e quando encontra a primeira ocorrência no segundo array o valor é registrado e a análise segue para o próximo item do primeiro array.']
             
-        }]
+        },
+        {
+            title: 'Usando o argumento "details"',
+            upText: ['Se queremos a mesma funcionalidade da argumento descrito acima e ao mesmo tempo saber os índices dos intens correspondentes e seus tipos devemos usar o argumento **details**.'],
+            code: `${JS.var('arr1', ['PHP', 'JavaScript', 55, 'Go', 89, 'Python', 'CSS', true])}
+${JS.var('arr2', ['true', true, 55, 'C++', 67, 1.5, 'Vue.js', 'JavaScript', 55])}
+
+${JS.call('arrMatch', [JS.var('.arr1'), JS.var('.arr2'), 'details'])}
+${JS.coment(`[
+    { item: "JavaScript", index_a: 1, index_b: 7, type: "string" },
+    { item: 55, index_a: 2, index_b: 2, type: "number" },
+    { item: true, index_a: 7, index_b: 1, type: "boolean" }
+]`)}`,
+            dawnText: ['Obtemos um array com objetos onde cada objeto contém informações sobre a busca como o item, o índice do item do primeiro array, o índice da primeira ocorrência encontrada no segundo array e o tipo.', 'Veja novamente que o item 55 se repete duas vezes no segundo array, porém o resultado só retorno um objeto para este item e se observarmos na propriedade que guarda o index do item correspondente encontrado no segundo array vemos o index 2.', 'Como já explicado no tópico sobre o uso do argumento "**all**" o tipo dos valores também é levado em consideração durante a busca, por isso o item **true** do tipo boolean em **arr1** não deu match com o item "**true**" do tipo string em **arr2**.', 'Este argumento também pode ser substituído por **detail** no singular, ambas as formas são válidas e posuem o mesmo resultado.']
+        },
+        {
+            title: 'Usando o argumento "length"',
+            upText: ['Retornando a quantidade de itens do primeiro array que existem no segundo array.'],
+            code: `${JS.var('arr1', ['PHP', 'JavaScript', 55, 'Go', 89, 'Python', 'CSS', true])}
+${JS.var('arr2', ['true', true, 55, 'C++', 67, 1.5, 'Vue.js', 'JavaScript', 55])}
+
+${JS.call('arrMatch', [JS.var('.arr1'), JS.var('.arr2'), 'length']) + JS.coment(3)}`,
+            dawnText: ['Usando o mesmo exemplo do tópico acima com o argumento "**length**" obtemos o número 3 como resultado pois os itens "**JavaScript**", **55** e **true** foram econtrados no segundo array.']  
+         },
+        
+        {
+            title: ['Usando argumentos numéricos'],
+
+            upText: ['Vamos definir uma regra para a busca usando um argumento do tipo número inteiro.'],
+            code: `${JS.var('arr1', ['Vue', 100, 'Nuxt', 'CSS', true])}
+${JS.var('arr2', ['HTML', 'CSS', 45, true, 'C#', 'JavaScript', 100, 'Python', 'React'])}
+
+${JS.coment('exemplo A')}
+${JS.call('arrMatch', [JS.var('.arr1'), JS.var('.arr2'), 3]) + JS.coment(true)}
+${JS.coment('exemplo B')}
+${JS.call('arrMatch', [JS.var('.arr1'), JS.var('.arr2'), 6]) + JS.coment(false)}`,
+            dawnText: ['No exemplo A definimos que a quantidades de itens em **arr1** que devem corresponder em **arr2** serão três itens e obtemos um **true** como resultado.']
+            
+        }
+        ]
     },
     
 }
