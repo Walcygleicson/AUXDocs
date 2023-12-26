@@ -3,7 +3,6 @@ import EH from "../js_docs/event_handler_docs.js"
 import DH from "../js_docs/dom_handler_docs.js"
 import utils from "../modules/utils.js";
 import vconfig from "../config/version.js";
-import { JS } from "../modules/code-themes.js";
 
 const docs = {
     'oh-list': OH,
@@ -447,9 +446,9 @@ function detailsSections(detailsList) {
         section.appendChild(pre)
 
         //Verificar se existe texto inferiores ao bloco de código
-        if (details.dawnText) {
+        if (details.downText) {
             // Criar parágrafos inferiores
-            details.dawnText.forEach((pText) => {
+            details.downText.forEach((pText) => {
                 const p = utils.createElement('p', {}, parseBoldMarks(pText))
                 section.appendChild(p)
             })
@@ -460,6 +459,51 @@ function detailsSections(detailsList) {
         detailsCapsule.appendChild(section)
     })
 }
+
+
+//BOTÕES DE NAVEGAÇÃO DO FIM DA PÁGINA
+
+//Botão de rolar para o topo
+const scrollTopButton = document.getElementById('scroll-top')
+scrollTopButton.addEventListener('click', () => { anim.scrollTop() })
+
+
+//Botões de doc anterior e próximo
+const currentHash = window.location.hash
+const docItems = document.querySelectorAll('.list-items > a')
+docItems.forEach((item, i, arr) => {
+    //Obter hash da documentação anterior e proxima para inserir nos links do botões
+    if (currentHash == item.hash) {
+        const prev = arr[i - 1]? arr[i-1].hash : null
+        const next = arr[i + 1] ? arr[i + 1].hash : null
+        const prevButton = document.getElementById('prev-doc')
+        const nextButton = document.getElementById('next-doc')
+
+        //Desabilitar link quando não existir item anterior
+        if (prev == null) {
+            prevButton.classList.add('link-disabled')
+            prevButton.style.pointerEvents = 'none'
+        } else {
+            prevButton.classList.remove('link-disabled')
+            prevButton.style.pointerEvents = 'all'
+        }
+
+        //Desabilitar link quando não existir próximo item
+        if (next == null) {
+            nextButton.classList.add('link-disabled')
+            nextButton.style.pointerEvents = 'none'
+        } else {
+            nextButton.classList.remove('link-disabled')
+            nextButton.style.pointerEvents = 'all'
+        }
+
+        prevButton.href = prev
+        nextButton.href = next
+        
+    }
+    
+})
+
 
 
 
@@ -491,13 +535,15 @@ const parseBoldMarks = function (text) {
     
     if (boldMarks) {
         boldMarks.forEach((mark) => {
-            text = text.replaceAll(mark, `<b>${mark.replaceAll('*', '')}</b>`)
+            text = text.replaceAll(mark, `<b class="emphasis">${mark.replaceAll('*', '')}</b>`)
             
         })
     }
 
     return text
 }
+
+
 
 
 
@@ -511,5 +557,3 @@ const parseBoldMarks = function (text) {
 //         rect.top <= (window.innerHeight || document.documentElement.clientHeight)
 // }
 
-
-console.log(JS.arr([1]))

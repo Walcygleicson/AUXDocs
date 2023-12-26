@@ -3,6 +3,7 @@
 @import url(Footer.css);
 @import url(Sidenav.css);
 @import url(Main.css);
+@import url(endButtons.css);
 
 /* teste */
 @import url(aboutAux.css);
@@ -15,7 +16,7 @@ body {
     grid-template-areas: 
     'aside main main main main'
     'aside main main main main'
-    'sep sep sep sep sep'
+    'aside end-btn end-btn end-btn end-btn'
     'footer footer footer footer footer';
 }
 
@@ -44,14 +45,20 @@ body * {
     grid-area: footer;
 }
 
-#sep {
-    grid-area: sep;
+#end-btn {
+    grid-area: end-btn;
 }
 
 
 .fade-transition > * {
     animation: fade .5s ease-in-out;
 }
+
+.emphasis{
+    color: rgb(125, 44, 148);
+    font-weight: normal;
+}
+
 
 @keyframes fade {
     0%{

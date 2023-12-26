@@ -37,10 +37,3 @@ main{
    margin: 9.5em auto auto auto;
 }
 
-.--sep {
-
-    text-align: center;
-    margin-top: 2em;
-    color: rgba(128, 128, 128, 0.258);
-    letter-spacing: 5px;
-}

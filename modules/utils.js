@@ -17,7 +17,13 @@ const utils = {
         return element;
     },
 
-    capitalize(string) {return string.charAt(0).toUpperCase() + string.slice(1);}
+    capitalize(string) { return string.charAt(0).toUpperCase() + string.slice(1); },
+    
+    //Função pega o filho de um elemento a partir de um seletor
+    getChild(parent, child_selector) {
+        return parent.querySelector(child_selector) ?
+            parent.querySelector(child_selector) : null; 
+        },
     
 }
 

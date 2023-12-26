@@ -68,7 +68,7 @@ ${JS.coment('exemplo B')}
 ${JS.call('arrMatch', [JS.var('.arr2'), JS.var('.arr3')]) + JS.coment(false)}`,
             
 
-            dawnText: ['No exemplo **A** o retorno é **true** pois o valor "hello" do array **arr1** também existem em **arr2**. Já no exemplo **B** o retorno é **false** pois nenhum valor de **arr2** foi encontrado em **arr3**.']
+            downText: ['No exemplo **A** o retorno é **true** pois o valor "hello" do array **arr1** também existem em **arr2**. Já no exemplo **B** o retorno é **false** pois nenhum valor de **arr2** foi encontrado em **arr3**.']
             
         },
         
@@ -97,7 +97,7 @@ ${JS.call('arrMatch', [JS.arr([JS.var('.names1'), 'Bill']), JS.arr([JS.var('.nam
 ${JS.coment('exemplo D')}
 ${JS.call('arrMatch', [JS.arr([JS.var('.names1'), 'Bill']), JS.arr([JS.var('.names1'), 'Bill']), 'all']) + JS.coment(true)}`,
             
-            dawnText: ['No exemplo A o retorno é **true** pois todos os itens de **arr1** existem em **arr3**. Já no exemplo B o retorno é **false** pois nem todos os item de **arr2** existem em **arr3**.',
+            downText: ['No exemplo A o retorno é **true** pois todos os itens de **arr1** existem em **arr3**. Já no exemplo B o retorno é **false** pois nem todos os item de **arr2** existem em **arr3**.',
             'Note que os valores que invalidaram a busca no exemplo B foram o número 78 e a string "true". Por mais que esses valores também existam em **arr3** seus tipos são diferentes. Deve ser verificado os tipos do valores antes de qualquer validação para que não haja resultados inesperados.',
             'Já no exemplo C o retorno pode parecer meio inusitado pois pensamos que o retorno deveria ser **true** já que ambos os arrays analisados possuem um array contendo os mesmos nomes de pessoa e mais o nome Bill fora dele, porém neste caso não é assim que é trabalhado. Por mais que ambas as variáveis sejam arrays que possuem os mesmos valores, ambas são objetos diferentes, e neste caso não é analisado o conteúdo das variáveis contidas nos arrays e sim se são os mesmos objetos. Esta regra serve para qualquer tipo de lista ou dicionário', 'O exemplo D retorna um **true** pois agora ambos os array analisados possuem a mesma variável e o mesmo valor "Bill".']
             
@@ -110,13 +110,13 @@ ${JS.var('arr2', ['foo', true, 'hello', 33, 'Lucas', 'bar', 'C++', 40, 'bar'])}
 
 ${JS.call('arrMatch', [JS.var('.arr1'), JS.var('.arr2'), 'list']) + JS.coment('[ "bar", 33, true, "hello", 33 ]')}
 `,
-            dawnText: ['A função retorna uma lista na ordem com todos os itens de **arr1** que aparecem em **arr2**.',
+            downText: ['A função retorna uma lista na ordem com todos os itens de **arr1** que aparecem em **arr2**.',
             'Note que o valor 33 se repete duas vezes em **arr1**, logo aparece duas vezes na lista do retorno. Já em **arr2** a string **"bar"** se repete duas vezes, mas na lista de retorno só aparece uma vez. Deve-se sempre lembrar que a função só analisa se um item do primeiro array existe em outro, e quando encontra a primeira ocorrência no segundo array o valor é registrado e a análise segue para o próximo item do primeiro array.']
             
         },
         {
             title: 'Usando o argumento "details"',
-            upText: ['Se queremos a mesma funcionalidade da argumento descrito acima e ao mesmo tempo saber os índices dos intens correspondentes e seus tipos devemos usar o argumento **details**.'],
+            upText: ['Se quisermos a mesma funcionalidade do argumento descrito acima e ao mesmo tempo saber os índices dos intens correspondentes e seus tipos devemos usar o argumento **details**.'],
             code: `${JS.var('arr1', ['PHP', 'JavaScript', 55, 'Go', 89, 'Python', 'CSS', true])}
 ${JS.var('arr2', ['true', true, 55, 'C++', 67, 1.5, 'Vue.js', 'JavaScript', 55])}
 
@@ -126,7 +126,7 @@ ${JS.coment(`[
     { item: 55, index_a: 2, index_b: 2, type: "number" },
     { item: true, index_a: 7, index_b: 1, type: "boolean" }
 ]`)}`,
-            dawnText: ['Obtemos um array com objetos onde cada objeto contém informações sobre a busca como o item, o índice do item do primeiro array, o índice da primeira ocorrência encontrada no segundo array e o tipo.', 'Veja novamente que o item 55 se repete duas vezes no segundo array, porém o resultado só retorno um objeto para este item e se observarmos na propriedade que guarda o index do item correspondente encontrado no segundo array vemos o index 2.', 'Como já explicado no tópico sobre o uso do argumento "**all**" o tipo dos valores também é levado em consideração durante a busca, por isso o item **true** do tipo boolean em **arr1** não deu match com o item "**true**" do tipo string em **arr2**.', 'Este argumento também pode ser substituído por **detail** no singular, ambas as formas são válidas e posuem o mesmo resultado.']
+            downText: ['Obtemos um array com objetos onde cada objeto contém informações sobre a busca como o item, o índice do item do primeiro array, o índice da primeira ocorrência encontrada no segundo array e o tipo.', 'Veja novamente que o item 55 se repete duas vezes no segundo array, porém o resultado só retorno um objeto para este item e se observarmos na propriedade que guarda o index do item correspondente encontrado no segundo array vemos o index 2.', 'Como já explicado no tópico sobre o uso do argumento "**all**" o tipo dos valores também é levado em consideração durante a busca, por isso o item **true** do tipo boolean em **arr1** não deu match com o item "**true**" do tipo string em **arr2**.', 'Este argumento também pode ser substituído por **detail** no singular, ambas as formas são válidas e posuem o mesmo resultado.']
         },
         {
             title: 'Usando o argumento "length"',
@@ -135,7 +135,7 @@ ${JS.coment(`[
 ${JS.var('arr2', ['true', true, 55, 'C++', 67, 1.5, 'Vue.js', 'JavaScript', 55])}
 
 ${JS.call('arrMatch', [JS.var('.arr1'), JS.var('.arr2'), 'length']) + JS.coment(3)}`,
-            dawnText: ['Usando o mesmo exemplo do tópico acima com o argumento "**length**" obtemos o número 3 como resultado pois os itens "**JavaScript**", **55** e **true** foram econtrados no segundo array.']  
+            downText: ['Usando o mesmo exemplo do tópico acima com o argumento "**length**" obtemos o número 3 como resultado pois os itens "**JavaScript**", **55** e **true** foram econtrados no segundo array.']  
          },
         
         {
@@ -149,8 +149,28 @@ ${JS.coment('exemplo A')}
 ${JS.call('arrMatch', [JS.var('.arr1'), JS.var('.arr2'), 3]) + JS.coment(true)}
 ${JS.coment('exemplo B')}
 ${JS.call('arrMatch', [JS.var('.arr1'), JS.var('.arr2'), 6]) + JS.coment(false)}`,
-            dawnText: ['No exemplo A definimos que a quantidades de itens em **arr1** que devem corresponder em **arr2** serão três itens e obtemos um **true** como resultado.']
+            downText: ['No exemplo A definimos que a quantidades de itens em **arr1** que devem corresponder em **arr2** serão três itens e obtemos um **true** como resultado pois a regra foi atendida com sucesso; três itens do primeiro array foram encontrados no segundo array. **[100, "CSS", true]**.',
+            ' Já no exemplo B obtemos um **false** pois a regra de seis itens compatíveis não foi atendida.', 'Isto serve para limitar a quantidade de itens que se repetem em outro array e obter uma filtragem mais precisa dos valores que entram e saem. Porém esse argumento numérico pode fazer bem mais que que só limitar um valor estático. Ao usar ele obtemos a liberdade de usar o quarto parâmetro que esta função dispõe junto de seus dois argumentos de controle. Veja no próximo tópico.']
             
+            },
+            {
+            
+                title: 'Usando os argumentos "min" e "max" no parâmetro 4',
+                upText: ['O quarto parâmetro desta função (**control_arg2**) imprementa uma funcionalidade extra ao uso de um argumento numérico no parâmetro anterior, possibilitando criar uma regra com limites mais flexisíveis do que o método visto no tópico acima.', 'Deve-se atentar que o uso do parâmetro **control_arg2** é opcional porém restrito somente ao uso em conjunto com um argumento do tipo number passado no parâmetro anterior. Caso tente usá-lo com algum argumento do tipo string um erro é lançado.', 'Dito isto, vamos criar uma nova regra agora usando os argumentos "**min**" e "**max**" onde um define a quantidade mínima e o outro define a quantidade máxima de itens de um array que podem ser encontrados em outro array.'],
+                code: `${JS.var('arr1', ['Vue', 100, 'Nuxt', 'CSS', true])}
+${JS.var('arr2', ['HTML', 'CSS', 45, true, 'C#', 'JavaScript', 100, 'Python', 'React'])}
+
+${JS.coment('exemplo A')}
+${JS.call('arrMatch', [JS.var('.arr1'), JS.var('.arr2'), 2, 'min']) + JS.coment(true)}
+${JS.coment('exemplo B')}
+${JS.call('arrMatch', [JS.var('.arr1'), JS.var('.arr2'), 4, 'min']) + JS.coment(false)}
+
+${JS.coment('exemplo C')}
+${JS.call('arrMatch', [JS.var('.arr1'), JS.var('.arr2'), 4, 'max']) + JS.coment(true)}
+${JS.coment('exemplo D')}
+${JS.call('arrMatch', [JS.var('.arr1'), JS.var('.arr2'), 2, 'max']) + JS.coment(false)}`,
+                downText: ['No exemplo A com o uso do argumento "**min**" definimos que a quantidade mínima de itens de **arr1** de quevem ser econtrados em **arr2** serão 2 mas 3 itens foram econtrados, logo a quantidade está dentro do exigido e o retorno é **true**. Já no exemplo B definimos que a quantidade mínima agora é 4 itens mas 3 foram encontrados, neste caso a quantidade está abaixo do exigido e o retorno é **false**.',
+                'No exemplo C com o uso do argumento "**max**" definimos que a quantidade máxima de itens que devem ser encontrados é 4 mas 3 itens foram encontrados, logo a quantidade não ultrapassou o limite e obtemos um **true**. Já no exemplo D definimos que a quantidade máxima de itens é 2 mas sabemos que a quantidade de itens em **arr1** que serão encontrados em **arr2** é 3 e esta quantidade ultrapassa o limite estabelecido, logo obtemos um **false** como resultado.']
         }
         ]
     },

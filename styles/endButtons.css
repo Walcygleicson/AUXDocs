@@ -1,0 +1,72 @@
+
+.end-buttons {
+    border: 1px solid rgba(182, 182, 182, 0.377);
+    padding: .5em 1em;
+    border-radius: 10px;
+    display: flex;
+    margin: 0 2em 2em 2em;
+    justify-content: space-between;
+}
+
+.end-buttons > .btn {
+    user-select: none;
+    font-size: 1em;
+    color: rgb(1, 1, 1);
+    display: flex;
+    align-items: center;
+}
+
+
+.end-buttons #next-doc > .svg-capsule > svg {
+    rotate: 180deg;
+}
+
+.end-buttons #scroll-top > .svg-capsule > svg{
+    rotate: 90deg;
+}
+
+.end-buttons #scroll-top {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.end-buttons > a::after {
+    content: '';
+}
+
+.end-buttons .svg-capsule{
+    display: flex;
+}
+
+
+.end-buttons .svg-capsule > svg{
+    fill: rgb(0, 0, 0);
+    width: 20px;
+    height: 20px;
+}
+
+.end-buttons > .link-disabled,
+.end-buttons > .link-disabled svg {
+    fill: gainsboro;
+    color: gainsboro;
+}
+
+.end-buttons > .btn:hover *{
+    color: rgb(87, 78, 88);
+    fill: rgb(87, 78, 88);
+}
+
+.end-buttons > .btn:hover svg {
+    animation: arrow 1s ease-in-out infinite;
+}
+
+@keyframes arrow{
+    0% {
+        transform: translateX(0px);
+    }
+
+    50% {
+        transform: translateX(-3px);
+    }
+}
