@@ -10,11 +10,13 @@ const docs = {
     'eh-list':  EH
 }
 
+var currentHash
+
+
 //Inicar página com essa hash se n houver
 if (window.location.hash == '') {
-    window.location.hash = 'about-aux' 
+    window.location.hash = 'about-aux'
 }
-
 //Inserir informações da versão e data na sideNav e secção intro
 document.getElementById('version').innerHTML = 'Versão: ' + vconfig.version + ' - ' + vconfig.date
 document.getElementById('v-number').innerHTML = 'Versão ' + vconfig.version
@@ -25,18 +27,21 @@ document.getElementById('v-date').innerHTML = vconfig.date
 
 //Evento de load da janela
 window.addEventListener('load', () => {
+    currentHash = window.location.hash
     addMediaClassName()
     changeDocItem()
-    //setCodeBlockWidth()
+    console.log(currentHash)
 })
 
+
 //Evento de click nos items da categoria Introdução (que não são criados dinamicamente)
+//**atualiza o hash */
 const introItems = [...document.querySelectorAll('.intro-items')]
 introItems.forEach((item) => {
     //EVENTO DE CLICK
     item.addEventListener('click', () => {
         anim.addFade()
-        anim.openSideNav()
+        anim.openSideNav(false)
         
         //Habilitar container do conteúdo aside
         document.querySelector('.aside-content').style.display = 'block'
@@ -63,6 +68,7 @@ introItems.forEach((item) => {
 
         //Mostrar/Esconder conteúdo do item selecionado e esconder conteúdo da documentação
         const liHash = item.children[0].href.split('#')[1] // Pegar hash do item
+        currentHash = "#" + liHash //Atualizar o hashatual
         const introSections = [...document.querySelectorAll('.intro-sections')]
         introSections.forEach((section) => {
             if (section.classList.contains(liHash)) {
@@ -76,6 +82,7 @@ introItems.forEach((item) => {
         //Esconder Conteudo da documentação
         document.querySelector('.content').style.display = 'none'
         anim.scrollTop()
+       
         
     })
 })
@@ -103,6 +110,7 @@ linkTo.forEach((link) => {
 
 
 //Preencher SideNav
+//**Artualiza o hash */
 const listId = ['oh-list', 'dh-list', 'eh-list']
 listId.forEach((id) => {
 
@@ -124,7 +132,8 @@ listId.forEach((id) => {
         //Evento de click nos li crados dinamicamente
         li.addEventListener('click', () => {
             anim.addFade()
-            anim.openSideNav()
+            anim.openSideNav(false)
+            currentHash = li.children[0].hash
             changeDocItem(li, id)
         })
 
@@ -346,7 +355,12 @@ function paramsDescription(params) {
             //Inserir span de tipo
             title.innerHTML += (function () {
                 //Obter tipos
-                const prmTypes = prm.type.map((e) => { return '<span>' + e + '</span>' })
+                
+                let prmTypes = prm.type.map((e) => {
+                    return '<span>' + e + '</span>'
+                })
+
+
                 return '<span class="arg-type">' + prmTypes.join(' | ') + '</span>'
             
             })()
@@ -429,7 +443,14 @@ function detailsSections(detailsList) {
             //Se não existir inserir titulo padrão
             title.innerHTML = 'Uso padrão:'
         }
-        section.appendChild(title)
+
+
+        //Adicionar título apenas se não tiver marcado como falso
+        if (details.title != false) {
+            section.appendChild(title)
+        } else {
+            section.classList.add('sub')
+        }
 
         //Verificar se existe textos superiores ao bloco de código
         if (details.upText) {
@@ -461,6 +482,7 @@ function detailsSections(detailsList) {
 }
 
 
+
 //BOTÕES DE NAVEGAÇÃO DO FIM DA PÁGINA
 
 //Botão de rolar para o topo
@@ -469,40 +491,38 @@ scrollTopButton.addEventListener('click', () => { anim.scrollTop() })
 
 
 //Botões de doc anterior e próximo
-const currentHash = window.location.hash
-const docItems = document.querySelectorAll('.list-items > a')
-docItems.forEach((item, i, arr) => {
-    //Obter hash da documentação anterior e proxima para inserir nos links do botões
-    if (currentHash == item.hash) {
-        const prev = arr[i - 1]? arr[i-1].hash : null
-        const next = arr[i + 1] ? arr[i + 1].hash : null
-        const prevButton = document.getElementById('prev-doc')
-        const nextButton = document.getElementById('next-doc')
+const nextPrevBtn = document.querySelectorAll('#prev-doc, #next-doc')
+nextPrevBtn.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        getNextPrev(btn)
+    })
+})
 
-        //Desabilitar link quando não existir item anterior
-        if (prev == null) {
-            prevButton.classList.add('link-disabled')
-            prevButton.style.pointerEvents = 'none'
-        } else {
-            prevButton.classList.remove('link-disabled')
-            prevButton.style.pointerEvents = 'all'
+
+function getNextPrev(btn) {
+    const docItems = document.querySelectorAll('.list-items > a')
+    var button = {}
+    docItems.forEach((item, i, arr) => {
+        //Obter hash da documentação anterior e proxima para inserir nos links do botões
+        if (currentHash == item.hash) {
+            button.prev = arr[i - 1]? arr[i - 1].parentElement : null
+            button.next = arr[i + 1] ? arr[i + 1].parentElement : null
+
+            if (btn.id == 'prev-doc') {
+                console.log('fim')
+                
+            } else if(btn.id == 'next-doc'){}
         }
-
-        //Desabilitar link quando não existir próximo item
-        if (next == null) {
-            nextButton.classList.add('link-disabled')
-            nextButton.style.pointerEvents = 'none'
-        } else {
-            nextButton.classList.remove('link-disabled')
-            nextButton.style.pointerEvents = 'all'
-        }
-
-        prevButton.href = prev
-        nextButton.href = next
         
+    })
+
+    if (btn.id == 'prev-doc' && button.prev) {
+        button.prev.click()
+    } else if (btn.id == 'next-doc' && button.next) {
+        button.next.click()
     }
     
-})
+}
 
 
 
@@ -531,11 +551,19 @@ const paramsNumb = function (paramList) {
 
 //Procura por marckdanws de texto negrito em textos **aaa** e envolve em uma tag b
 const parseBoldMarks = function (text) {
-    const boldMarks = text.match(/\*\*(\w+|.+)\*\*/g)
+    const boldMarks = text.match(/\*\*(\w+|.*?)\*\*/g)
+    const italic = text.match(/\#\#(\w+|.*?)\#\#/g)
     
     if (boldMarks) {
         boldMarks.forEach((mark) => {
-            text = text.replaceAll(mark, `<b class="emphasis">${mark.replaceAll('*', '')}</b>`)
+            text = text.replaceAll(mark, `<b class="bold-mark">${mark.replaceAll('*', '')}</b>`)
+            
+        })
+    }
+
+     if (italic) {
+        italic.forEach((mark) => {
+            text = text.replaceAll(mark, `<i class="italic-mark">${mark.replaceAll('#', '')}</i>`)
             
         })
     }

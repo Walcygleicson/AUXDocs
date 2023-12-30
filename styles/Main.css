@@ -182,13 +182,16 @@
     letter-spacing: 5px;
 }
 
-.details-section {
-    border-bottom: 1px dashed rgba(119, 119, 119, 0.164);
-    padding-bottom: 1em;
-    margin-bottom: 1em;
+.details-section:not(.sub) + .details-section:not(.sub),
+.details-section:is(.sub) + .details-section:not(.sub){
+    padding-top: 1em;
+    margin-top: 1em;
+    border-top: 1px dashed rgba(119, 119, 119, 0.164);
 }
 
-.details-section>p {
+
+
+.details-section > p {
     text-indent: 1em;
     margin-top: .5em;
 }

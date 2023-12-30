@@ -61,8 +61,53 @@ code .call {
     color: rgb(95, 232, 68);
 }
 
+code .const {
+    color: rgb(202, 116, 249);
+}
+
 @media screen and (max-width: 650px){
     .example-code {
         font-size: .7em;
     }
+}
+
+/* HTML */
+
+code .tag-name {
+    color: rgb(255, 36, 62);
+    font-weight: bold;
+}
+
+code .tag {
+    color: rgba(143, 161, 147, 0.623);
+}
+
+code .tag-content {
+    color: white;
+    font-weight: normal;
+}
+
+code .attr {
+    color: rgb(122, 219, 254);
+    font-weight: normal;
+}
+
+code .equal {
+    color: rgb(230, 230, 230);
+}
+
+code .class-name{
+    color: rgb(97, 251, 55);
+}
+
+code .id-name {
+    color: rgb(251, 139, 34);
+}
+
+code .attr-value {
+    color: rgb(252, 252, 147);
+}
+
+code .html-coment{
+    color: rgb(140, 139, 139);
 }

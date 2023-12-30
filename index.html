@@ -11,7 +11,9 @@
 </head>
 
 <body>
+
     <header>
+        <a href=""></a>
         <div class="aux">
             <img src="imgs/flask.png" alt="Logo AUX" class="aux-logo">
             <h1 class="aux-title">
@@ -215,7 +217,7 @@
                             <h3>Usando argumentos de controle:</h3>
 
 
-                            <p>Temos uma função chamada <a class="link-to" href="#teste1" title="Ir para documentação">arrMatch( )</a> que faz uma verificação em dois arrays e retorna <b>true</b> se um ou mais elementos do primeiro array também existir no segundo array. Este é o comportamento padrão da função se apenas os arrays forem passados como argumentos.</p>
+                            <p>Temos uma função chamada <a class="link-to" href="#arrMatch" title="Ir para documentação">arrMatch( )</a> que faz uma verificação em dois arrays e retorna <b>true</b> se um ou mais elementos do primeiro array também existir no segundo array. Este é o comportamento padrão da função se apenas os arrays forem passados como argumentos.</p>
                             <pre class="example-code" id="ex1"></pre>
 
 
@@ -262,7 +264,7 @@
                             <p>Os argumentos listados aqui não são todos. Cada módulo possui sua particularidade e pode ou não compartilhar dos mesmos argumentos, ou podem ou não usar os mesmos argumentos em situações diferentes com resultados diferentes.</p>
                             <p>Este artigo é apenas introdutório, para se aprofundar em mais detalhes deve-se seguir para as demais categorias litadas na aba de navegação.</p>
 
-                            <p class="warn-text">Nota: Os exemplos acima não possuem o intuito de ensinar o uso da função e nem seus parâmetros e argumentos de controle. A explicação aqui não está completa e serve somente de exemplo para complementar este material. Para detalhes amis abrangentes sobre a função <a href="#teste1" class="link-to" title="Ir para documentação">arrMatch( )</a>  consulte a documentação da mesma.</p>
+                            <p class="warn-text">Nota: Os exemplos acima não possuem o intuito de ensinar o uso da função e nem seus parâmetros e argumentos de controle. A explicação aqui não está completa e serve somente de exemplo para complementar este material. Para detalhes amis abrangentes sobre a função <a href="#arrMatch" class="link-to" title="Ir para documentação">arrMatch( )</a>  consulte a documentação da mesma.</p>
 
                         </div>
 
@@ -334,7 +336,7 @@
     <!-- Botões de anterior/proxima doc e voltar ao topo -->
     <div class="end-buttons" id="end-btn">
         <!-- Voltar para doc anterior -->
-        <a href="##" id="prev-doc" class="link-to btn">
+        <button id="prev-doc" class="btn">
             <div class="svg-capsule">
                 <?xml version="1.0" encoding="UTF-8"?>
                 <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512">
@@ -343,7 +345,7 @@
                 </svg>
             </div>
             <span class="txt">Anterior</span>
-        </a>
+        </button>
 
         <!-- Botão de rolar para o topo -->
         <button id="scroll-top" class="btn">
@@ -358,7 +360,7 @@
         </button>
 
         <!-- Seguir para próxima doc -->
-        <a href="##" id="next-doc" class="link-to btn">
+        <button id="next-doc" class="btn">
             <span class="txt">Próximo</span>
             <div class="svg-capsule">
                 <?xml version="1.0" encoding="UTF-8"?>
@@ -368,7 +370,7 @@
                 </svg>
             </div>
             
-        </a>
+        </button>
     </div>
 
     <footer id="footer">

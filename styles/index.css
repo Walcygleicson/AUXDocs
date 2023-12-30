@@ -54,9 +54,13 @@ body * {
     animation: fade .5s ease-in-out;
 }
 
-.emphasis{
-    color: rgb(125, 44, 148);
-    font-weight: normal;
+.bold-mark{
+    color: rgb(97, 97, 97);
+    
+}
+
+.italic-mark{
+    color: rgb(121, 121, 121);
 }
 
 

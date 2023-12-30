@@ -174,7 +174,6 @@ ${JS.call('arrMatch', [JS.var('.arr1'), JS.var('.arr2'), 2, 'max']) + JS.coment(
         }
         ]
     },
-    
 }
 
 export default OH

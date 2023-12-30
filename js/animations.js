@@ -10,8 +10,8 @@ openNavButton.addEventListener('click', () => {
 
 //Função mostrar e esconder side nav
 const anim = {
-    openSideNav() {
-        if (aside.classList.contains('media-tablet')) {
+    openSideNav(opened) {
+        if (aside.classList.contains('media-tablet') && opened==undefined) {
             if (navOn) {
                 aside.style.left = '-325px'
                 navOn = !navOn
@@ -20,6 +20,13 @@ const anim = {
                 aside.style.left = 0
                 navOn = !navOn
             }
+        } else if (opened && !navOn) { //Forçar abrir
+            navOn = true
+            aside.style.left = 0
+
+        } else if (!opened && navOn) { //forçar fechar
+            navOn = false
+            aside.style.left = '-325px'
         }
         
     },
