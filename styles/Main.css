@@ -125,11 +125,16 @@
 }
 
 .params .params-list > li {
-    margin: 1em 0 0 1.5em;
+    margin-top: 1em;
 }
 
 .params .param-description {
-    padding: .5em 0 0 2em;
+    padding: .5em 0 0 1.5em;
+}
+
+.params .param-description > li {
+    text-indent: .5em;
+    margin-top: .5em;
 }
 
 .description > .note {

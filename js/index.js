@@ -553,6 +553,7 @@ const paramsNumb = function (paramList) {
 const parseBoldMarks = function (text) {
     const boldMarks = text.match(/\*\*(\w+|.*?)\*\*/g)
     const italic = text.match(/\#\#(\w+|.*?)\#\#/g)
+    const link = text.match(/\@(\w+|.*?)\@/g)
     
     if (boldMarks) {
         boldMarks.forEach((mark) => {
@@ -564,6 +565,13 @@ const parseBoldMarks = function (text) {
      if (italic) {
         italic.forEach((mark) => {
             text = text.replaceAll(mark, `<i class="italic-mark">${mark.replaceAll('#', '')}</i>`)
+            
+        })
+    }
+
+    if (link) {
+        link.forEach((mark) => {
+            text = text.replaceAll(mark, `<a class="link-to" href="#${mark.replaceAll('@', '')}">${mark.replaceAll('@', '')}</a>`)
             
         })
     }
@@ -584,4 +592,5 @@ const parseBoldMarks = function (text) {
 //         rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
 //         rect.top <= (window.innerHeight || document.documentElement.clientHeight)
 // }
+
 

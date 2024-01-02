@@ -13,7 +13,7 @@
 .example-code {
     font-size: .8em;
     background: rgb(63, 53, 71);
-    color: rgb(255, 224, 222);
+    color: rgba(255, 224, 222, 0.918);
     padding: 1em 1em 1em 2em;
     border-radius: 10px;
     margin: 1em auto;
@@ -29,7 +29,7 @@
 }
 
 code .keyword {
-    color: rgb(66, 135, 246);
+    color: rgb(122, 173, 255);
     font-family: codeItalic;
 }
 
@@ -63,6 +63,11 @@ code .call {
 
 code .const {
     color: rgb(202, 116, 249);
+}
+
+code .param {
+    color: rgb(252, 96, 39);
+    font-family: codeItalic;
 }
 
 @media screen and (max-width: 650px){

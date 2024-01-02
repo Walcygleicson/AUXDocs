@@ -222,6 +222,26 @@ export const JS = {
         fullName = fullName.split('.')
 
         return span('prop', fullName[0]) + '.' + span('call', fullName[1]) + `(${arr_obj(params)})`
+    },
+
+    function(name = null, params = null, code='') {
+        if (name != null) {
+            name = span('call', name + ' ')
+        } else {
+            name = ''
+        }
+
+        if (params != null && getType(params) == 'array') {
+            params = params.map((p) => {
+                return span('param', p)
+            })
+
+            params = params.join(', ')
+        } else {
+            params = ''
+        }
+
+        return span('keyword', 'function ') + `${name}(${params}){${code}}`
     }
 }
 
